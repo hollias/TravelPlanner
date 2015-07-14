@@ -67,7 +67,7 @@ create table hot(
    memberid varchar2(15)       --회원아이디
 );
 
-
+select * from schedule s,hot h where s.hotid =h.hotid and h.local='서울' and s.plannerName='놀자!' and h.memberid='a';
 select * from schedule s, hot h where s.hotid =h.hotid and s.memberid='a' and plannername='놀자!' and local='대전'
 select * from schedule s,hot h where s.hotid =h.hotid and local='서울' and plannerName='놀자!';
 select local from planners where plannerid = 1 and lineorder=2;

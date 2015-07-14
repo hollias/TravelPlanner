@@ -50,7 +50,7 @@
   					s.dday=#{dday}
   </select>
   <select id="getLocalSchedule" resultMap="ScheduleHotResult" parameterType="java.util.Map">
-  		select * from schedule s,hot h where s.hotid =h.hotid and local=#{local} and plannerName=#{plannerName};
+  		select * from schedule s,hot h where s.hotid =h.hotid and h.local=#{local} and s.plannerName=#{plannerName} and h.memberid=#{memberid}
   </select>
   <select id="scheduleLocalCount" resultType="Integer" parameterType="java.util.Map" >
         select nvl(count(*),0) from schedule s, hot h where s.hotid =h.hotid and s.memberid=#{memberid} and plannername=#{plannerName} and local=#{local}
