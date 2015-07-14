@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScheduleHot">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="ScheduleHotResult" type="ScheduleHot">
+    <result property="scheduleid" column="scheduleid"/>
+    <result property="plannername" column="plannername"/>
+    <result property="memberid" column="memberid"/>
+    <result property="hotid" column="hotid"/>
+    <result property="dday" column="dday"/>
+    <result property="hotname" column="hotname"/>
+    <result property="hotprice" column="hotprice"/>
+    <result property="hotcontent" column="hotcontent"/>
+    <result property="hotimage" column="hotimage"/>
+    <result property="hotkind" column="hotkind"/>
+    <result property="x" column="x"/>
+    <result property="y" column="y"/>
+    <result property="local" column="local"/>
+    <result property="readcount" column="readcount"/>
+  </resultMap>
+  <select id="stay" parameterType="ScheduleHot" resultMap="ScheduleHotResult">
+	select sum(h.hotprice) hotprice from schedule s , hot h where s.hotid=h.hotid and h.hotkind=3
+  			and s.memberid=#{memberid} and plannername=#{plannername}
+  </select>
+  <select id="restaurant" parameterType="ScheduleHot" resultMap="ScheduleHotResult">
+	select sum(h.hotprice) hotprice from schedule s , hot h where s.hotid=h.hotid and h.hotkind=1
+  			and s.memberid=#{memberid} and plannername=#{plannername}
+  </select>
+    <select id="tourist" parameterType="ScheduleHot" resultMap="ScheduleHotResult">
+	select sum(h.hotprice) hotprice from schedule s , hot h where s.hotid=h.hotid and h.hotkind=2
+  			and s.memberid=#{memberid} and plannername=#{plannername}
+  </select>
+  <select id="total" parameterType="ScheduleHot" resultMap="ScheduleHotResult">
+	select sum(h.hotprice) hotprice from schedule s , hot h where s.hotid=h.hotid 
+			and s.memberid=#{memberid} and plannername=#{plannername}
+  </select>
+  <select id="schot" parameterType="ScheduleHot" resultMap="ScheduleHotResult">
+	select h.local , h.hotname, h.hotprice , dday, h.hotid from hot h , schedule s where h.hotid=s.hotid 
+  		and s.memberid=#{memberid} and plannername=#{plannername} order by dday
+  </select>
+  <select id="getAllSchedule" resultMap="ScheduleHotResult" parameterType="java.util.Map">
+    	select * from schedule s, hot h where s.hotid=h.hotid and h.memberid=#{memberid} and s.plannername=#{plannername} 
+  </select>
+  <select id="selectDdaySchedule" resultMap="ScheduleHotResult" parameterType="java.util.Map">
+  		select * from schedule s, hot h 
+  			where s.hotid=h.hotid and 
+  					h.memberid=#{memberid} and 
+  					s.plannername=#{plannerName} and
+  					s.dday=#{dday}
+  </select>
+  <select id="getLocalSchedule" resultMap="ScheduleHotResult" parameterType="java.util.Map">
+  		select * from schedule s,hot h where s.hotid =h.hotid and local=#{local} and plannerName=#{plannerName};
+  </select>
+  <select id="scheduleLocalCount" resultType="Integer" parameterType="java.util.Map" >
+        select nvl(count(*),0) from schedule s, hot h where s.hotid =h.hotid and s.memberid=#{memberid} and plannername=#{plannerName} and local=#{local}
+  </select>
+</mapper>

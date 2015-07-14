@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PlannerSJoin">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="PlannerSJoinResult" type="PlannerSJoin">
+    <result property="plannerid" column="plannerid"/>
+    <result property="plannername" column="plannername"/>
+    <result property="memberid" column="memberid"/>
+    <result property="ongoing" column="ongoing"/>
+	<result property="local" column="local" />
+    <result property="regdate" column="regdate"/>
+    <result property="lineorder" column="lineorder"/>
+    <result property="day" column="day"/>
+  </resultMap>
+  <select id="diary" resultType="PlannerSJoin" parameterType="java.util.Map">
+		select local, memberid , lineorder ,plannername from planner p, planners ps where
+			p.plannerid=ps.plannerid and ongoing=0
+  </select>
+  <select id="diarycheck" resultType="PlannerSJoin" parameterType="java.util.Map">
+		select local, memberid , lineorder ,plannername from planner p ,planners ps where
+			p.plannerid=ps.plannerid and ongoing=1 and plannername=#{plannername}
+  </select>
+</mapper>

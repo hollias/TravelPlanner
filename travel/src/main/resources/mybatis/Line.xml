@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Line">
+  <!-- Use type aliases to avoid typing the full classname every time. -->  
+  <resultMap id="LineResult" type="Line">
+    <result property="lineid" column="lineid"/>
+    <result property="startpoint" column="startpoint"/>
+    <result property="endpoint" column="endpoint"/>
+    <result property="readcount" column="readcount"/>
+    <result property="day" column="day"/>
+    
+  </resultMap>
+  
+  <insert id="insertLine" parameterType="Line">
+		<selectKey keyProperty="lineid" resultType="Integer"  order="BEFORE">
+			SELECT NVL(MAX(lineid),0) + 1 FROM line
+		</selectKey>
+		<![CDATA[ insert into line values (#{lineid},#{startpoint},#{endpoint},#{readcount}) ]]>
+	</insert>	
+ 	<select id="confirm" parameterType="Line" resultMap="LineResult">
+ 		<![CDATA[select * from line where startpoint = #{startpoint} and endpoint = #{endpoint}]]>
+ 	</select>
+ 	
+ 	<update id="updateLine" parameterType="java.util.Map">
+ 		<![CDATA[update line set readcount = readcount + 1 where startpoint=#{startpoint} and endpoint=#{endpoint}]]>	    
+ 	</update>
+ 	
+ 	<select id="selectLineId" parameterType="java.util.Map" resultType="int">
+ 		<![CDATA[select lineid from line where startpoint = #{startpoint} and endpoint = #{endpoint}]]>
+ 	</select>
+</mapper>

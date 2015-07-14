@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Line" type="model.Line" />
+		<typeAlias alias="Planner" type="model.Planner"/>
+		<typeAlias alias="PlannerS" type="model.PlannerS"/>
+		<typeAlias alias="Member" type="model.Member"/>
+		<typeAlias alias="PlannerSArea" type="model.PlannerSArea"/> 
+		<typeAlias alias="Area" type="model.Area"/>
+		<typeAlias alias="ScheduleHot" type="model.ScheduleHot" />
+		<typeAlias alias="Board" type="model.Board" />
+		<typeAlias alias="Schedule" type="model.Schedule" />
+		<typeAlias alias="PlannerSJoin" type="model.PlannerSJoin" />
+		<typeAlias alias="MapJoin" type="model.MapJoin" />
+		<typeAlias alias="Hot" type="model.Hot" />
+		<typeAlias alias="HotArea" type="model.HotArea" />
+		
+	</typeAliases>
+	<mappers>
+		<mapper resource="mybatis/Line.xml" />
+		<mapper resource="mybatis/Planner.xml"/>
+		<mapper resource="mybatis/PlannerS.xml"/>
+		<mapper resource="mybatis/Member.xml"/>
+		<mapper resource="mybatis/PlannerSArea.xml"/>
+		<mapper resource="mybatis/Area.xml"/> 
+		<mapper resource="mybatis/ScheduleHot.xml" />
+		<mapper resource="mybatis/Board.xml" />
+		<mapper resource="mybatis/Schedule.xml" />
+		<mapper resource="mybatis/MapJoin.xml"/>
+		<mapper resource="mybatis/PlannerSJoin.xml"/>
+		<mapper resource="mybatis/Hot.xml"/>
+		<mapper resource="mybatis/HotArea.xml"/>
+		
+	</mappers>
+</configuration>

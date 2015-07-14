@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Planner">
+  <!-- Use type aliases to avoid typing the full classname every time. -->  
+  <resultMap id="PlannerResult" type="Planner">
+    <result property="plannerid" column="plannerid"/>
+    <result property="plannername" column="plannername"/>
+    <result property="memberid" column="memberid"/>
+    <result property="ongoing" column="ongoing"/>	
+  </resultMap>
+  
+    <insert id="createPlanner" parameterType="Planner">
+		<selectKey keyProperty="plannerid" resultType="Integer"  order="BEFORE">
+			SELECT NVL(MAX(plannerid),0) + 1 FROM planner
+		</selectKey>
+		<![CDATA[ insert into planner values (#{plannerid},'temp',#{memberid},0) ]]>
+	</insert>	
+	<select id="selectPlannerId" parameterType="Planner" resultType="int">
+		<![CDATA[ select plannerid from planner where memberid = #{memberid} and ongoing = 0 ]]>
+	</select>
+	<select id="mainList" resultType="Planner">
+       select * from planner where ongoing=0 order by plannerid desc
+   </select>
+	<select id="confirmOngoing" parameterType="String" resultType="int">
+		<![CDATA[ select count(*) from planner where memberid = #{loginUser} and ongoing = 0 ]]>
+	</select>
+	<select id="ongoingPlannerId" parameterType="String" resultType="int">
+		<![CDATA[ select plannerid from planner where memberid = #{loginUser} and ongoing = 0 ]]>
+	</select>	
+	<select id="findPlannerName" parameterType="int" resultType="String">
+		<![CDATA[ select plannername from planner where plannerid = #{ongoingPlannerId} ]]>
+	</select>
+	<select id="plannerOne" resultType="Planner" parameterType="java.util.Map">
+	select * from planner where memberid=#{memberid} and ongoing=0
+  </select>
+  <select id="list" resultType="Planner" parameterType="java.util.Map">
+	select * from planner where memberid=#{memberid} and ongoing=1
+  </select>
+    <select id="plannerName" resultType="Planner" parameterType="java.util.Map">
+	select * from planner where memberid=#{memberid} and plannername=#{plannername}
+  </select>
+   <update id="updatePlannerName" parameterType="java.util.Map">
+      <![CDATA[ UPDATE planner SET plannername=#{plannername} WHERE plannerid=#{plannerid}]]>
+   </update>   
+  
+</mapper>

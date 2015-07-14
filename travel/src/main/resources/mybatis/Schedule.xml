@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Schedule">
+   <resultMap id="ScheduleResult" type="Schedule">
+    <result property="scheduleid" column="scheduleid"/>
+    <result property="plannername" column="plannername"/>
+    <result property="memberid" column="memberid"/>
+    <result property="hotid" column="hotid"/>
+    <result property="dday" column="dday"/>
+    
+  </resultMap>
+   
+    <select id="scheduleCount" resultType="Integer" parameterType="java.util.Map" >
+        select nvl(count(*),0) from schedule where memberid=#{memberid} and plannername=#{plannerTitle}
+    </select>
+    
+    <insert id="insertSchedule" useGeneratedKeys="true" keyProperty="scheduleid" parameterType="Schedule">
+    	<selectKey keyProperty="scheduleid" resultType="int"  order="BEFORE">
+			SELECT NVL(MAX(scheduleid),0) + 1 FROM schedule
+		</selectKey>
+    	insert into schedule values (#{scheduleid},#{plannername},#{memberid},#{hotid},#{dday})
+    </insert>
+</mapper>

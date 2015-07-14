@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Hot">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="HotResult" type="Hot">
+    <result property="hotid" column="hotid"/>
+    <result property="hotname" column="hotname"/>
+    <result property="hotprice" column="hotprice"/>
+    <result property="hotcontent" column="hotcontent"/>
+    <result property="hotimage" column="hotimage"/>
+    <result property="hotkind" column="hotkind"/>
+    <result property="x" column="x"/>
+    <result property="y" column="y"/>
+    <result property="local" column="local"/>
+    <result property="readcount" column="readcount"/>
+	<result property="memberId" column="memberId"/>
+  </resultMap>
+  <select id="hotone" resultType="Hot" parameterType="java.util.Map">
+	select local , hotname , hotprice, hotcontent,hotimage from hot where local=#{local} and hotname=#{hotname}
+  </select>
+   <select id="hotrest" resultType="Hot" parameterType="java.util.Map">
+	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=1 and local=#{local}) where rank <=20 ]]>
+  </select>
+   <select id="hottourist" resultType="Hot" parameterType="java.util.Map">
+	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=2 and local=#{local}) where rank <=20 ]]>
+  </select>
+   <select id="hotstay" resultType="Hot" parameterType="java.util.Map">
+	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=3 and local=#{local}) where rank <=20 ]]>
+  </select>
+  <select id="hotajax" resultType="Hot" parameterType="java.util.Map">
+	select * from hot where hotid=#{hotid}
+  </select>
+  <select id="hotimage" resultType="Hot" parameterType="java.util.Map">
+	<![CDATA[ select hotimage, hotid, hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot where local=#{local}) where rank <=20 ]]>
+  </select>
+  <insert id="inserthot" parameterType="hot" useGeneratedKeys="true" keyProperty="hotid">
+	<selectKey keyProperty="hotid" resultType="Integer"  order="BEFORE">
+			SELECT NVL(MAX(hotid),0) + 1 FROM hot
+	</selectKey>
+	  INSERT INTO 
+			hot(hotid,hotname,hotprice,hotcontent,hotkind,hotimage,x,y,local,readcount,memberid)
+		VALUES( #{hotid},#{hotname},#{hotprice},#{hotcontent},#{hotkind},#{hotimage},#{x},#{y},#{local},#{readcount},#{memberid}  )
+  </insert>
+  <update id="updatehot" parameterType="Hot">
+		UPDATE 
+			hot
+		SET
+			hotname=#{hotname}, hotprice=#{hotprice}, hotcontent=#{hotcontent}, hotimage=#{hotimage},
+			hotkind=#{hotkind}, x=#{x}, y=#{y}, local=#{local}
+		WHERE 
+			hotid=#{hotid}
+  </update>
+  <delete id="deletehot" parameterType="java.util.Map">
+		delete from hot where hotid=#{hotid}
+  </delete>
+  <select id="hotlist" resultType="Hot" resultMap="HotResult">
+	<![CDATA[ select hotimage, hotid, hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot) where rank <=20 ]]>
+  </select>
+  <select id="htrest" resultType="Hot" resultMap="HotResult">
+	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=1) where rank <=20 ]]>
+  </select>
+  <select id="httourist" resultType="Hot" resultMap="HotResult">
+	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=2) where rank <=20 ]]>
+  </select>
+  <select id="htstay" resultType="Hot" resultMap="HotResult">
+	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=3) where rank <=20 ]]>
+  </select>
+  <select id="hotajax2" resultType="Hot" parameterType="java.util.Map">
+	select hotname,hotcontent,hotprice from hot where hotname=#{hotname} and x=#{x}
+  </select>
+  <select id="getHot" resultType="Hot" parameterType="String">
+	select * from hot where local=#{local} 
+  </select>
+  <select id="findHotId" resultType="int" parameterType="Hot">
+  	select hotid from hot where x=#{x}
+  </select>
+   <!--핫아이템 리드카운터  -->
+  <update id="hotHitUp" parameterType="String">
+    update hot set readcount = readcount+1 where hotid=#{hotid} 
+  </update>
+</mapper>

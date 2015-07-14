@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapJoin">
+  <!-- Use type aliases to avoid typing the full classname every time. -->  
+  <resultMap id="MapJoinResult" type="MapJoin">
+    <result property="plannerid" column="plannerid"/>
+    <result property="plannername" column="plannername"/>
+    <result property="memberid" column="memberid"/>
+    <result property="ongoing" column="ongoing"/>	
+    <result property="local" column="local"/>    
+    <result property="regdate" column="regdate"/>
+    <result property="lineorder" column="lineorder"/>
+    <result property="day" column="day"/>
+    <result property="localcontent" column="localcontent"/>
+    <result property="x" column="x"/>
+    <result property="y" column="y"/>
+    <result property="areaimage" column="areaimage"/>
+  </resultMap>  
+  <select id="mj" resultType="MapJoin" parameterType="java.util.Map">
+   select lineorder,x,y from area a ,planner p , planners ps where p.plannername=#{plannername}
+      <if test="memberid != 'null'">
+      and memberid=#{memberid}</if>
+      and p.plannerid = ps.plannerid  and a.local = ps.local
+      order by lineorder
+  </select>
+</mapper>

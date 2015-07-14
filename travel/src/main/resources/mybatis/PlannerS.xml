@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PlannerS">
+  <!-- Use type aliases to avoid typing the full classname every time. -->  
+  <resultMap id="PlannerSResult" type="PlannerS">
+    <result property="plannerid" column="plannerid"/>
+    <result property="local" column="local"/>
+    <result property="regdate" column="regdate"/>
+    <result property="lineorder" column="lineorder"/>	
+    <result property="day" column="day"/>
+  </resultMap>  
+  
+    <insert id="insertPlannerS" parameterType="PlannerS">		
+   		<selectKey keyProperty="lineorder" resultType="Integer"  order="BEFORE">
+			SELECT NVL(MAX(lineorder),0) + 1 FROM planners
+		</selectKey>
+		<![CDATA[ insert into plannerS values (#{plannerid},#{local},Sysdate,#{lineorder},0) ]]>
+	</insert>	
+	
+	<select id="ongoingPlannerSCount" parameterType="int" resultType="int">		
+		<![CDATA[ select count(*) from planners where plannerid = #{ongoingPlannerId} ]]>
+	</select>
+	
+	<select id="findPlannerStartdate" parameterType="int" resultType="String">		
+		<![CDATA[ select to_char(regdate,'yyyy-mm-dd') from planners where plannerid = #{ongoingPlannerId} and lineorder = 1]]>
+	</select>
+	
+	 <select id="calendar" resultType="PlannerS" parameterType="java.util.Map">
+	select to_char(regdate,'dd') dd,to_char(regdate,'mm') mm ,substr(day,1,1) day , local 
+		from planners where plannerid=#{plannerid}
+  </select>
+  
+  	<select id="plannerSCount" resultType="int" parameterType="int">
+  		select count(*) from planners where plannerid = #{plannerId}
+  	</select>
+  	
+  	<select id="selectOngoingPlannerS" parameterType="int" resultType="PlannerS">		
+		<![CDATA[ select * from planners where plannerid = #{plannerId} order by lineorder ]]>
+	</select>
+	
+	<delete id="plannerSAllDelete" parameterType="int">
+		delete from planners where plannerId=#{plannerId}
+	</delete>
+	
+	<insert id="submitPlannerS" parameterType="PlannerS">
+	<selectKey keyProperty="lineorder" resultType="Integer"  order="BEFORE">
+			SELECT NVL(MAX(lineorder),0) + 1 FROM planners
+		</selectKey>
+		<![CDATA[ insert into plannerS values (#{plannerid},#{local},Sysdate,#{lineorder},#{day}) ]]>
+	</insert>
+	
+  	<select id="getLocalBylineorder" parameterType="java.util.Map" resultType="PlannerS">		
+		<![CDATA[ select * from planners where plannerid = #{plannerId} and lineorder=#{lineorder} ]]>
+	</select>
+</mapper>

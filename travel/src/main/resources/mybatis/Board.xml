@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+	<resultMap  type="Board" id="ResultMap">
+		<result property="boardid" 	 		column="boardid"/>
+		<result property="memberid" 		column="memberid"/>
+		<result property="title" 		column="title"/>
+		<result property="content"		column="content"/>
+		<result property="regdate"  	column="regdate"/>
+		<result property="readcount" 			column="readcount"/>
+	</resultMap>
+	
+<select id="getBoardItem" resultType="Board">
+		SELECT 
+			boardid,
+			title,
+			content,
+			readcount,
+			regdate, 
+			memberid
+		FROM board WHERE 
+			boardid = #{boardid}
+	</select>
+	<update id="hitUpdateBoard" parameterType="Integer">
+		update board set readcount = readcount+1 where boardid=#{boardid}
+	</update>
+	
+	<select id="getBoardList" resultType="Board">
+		SELECT * FROM (SELECT ROWNUM RN, N.* FROM 
+					(SELECT * FROM BOARD
+					 ORDER BY boardid DESC) N
+				)
+				WHERE
+			<!-- 	<if test="searchOption != null">
+				AND ${searchOption} LIKE CONCAT('%',#{searchInput},'%')
+			</if> -->
+			 RN BETWEEN 1 + (#{page}-1)*10 
+				AND 10 + (#{page}-1)*10
+
+	</select>
+	
+	<select id="countBoardList" resultType="Integer">
+		SELECT 
+			COUNT(*)
+		FROM 
+			board
+		WHERE 1=1
+		<!-- <if test="searchOption != null">
+				AND ${searchOption} LIKE CONCAT('%',#{searchInput},'%')
+			</if> -->
+	</select>
+
+	<insert id="insertBoardItem" parameterType="Board" useGeneratedKeys="true" keyProperty="boardid">
+		 <selectKey keyProperty="boardid" resultType="Integer"  order="BEFORE">
+			SELECT NVL(MAX(boardid),0) + 1 FROM BOARD
+		</selectKey>
+	  INSERT INTO 
+			BOARD(boardid , readcount, title, content, regdate,memberid )
+		VALUES(#{boardid}, 0 , #{title}, #{content}, sysdate, #{memberid}  )
+		
+	</insert>
+
+	<update id="updateBoardItem" parameterType="Board">
+		UPDATE
+			BOARD
+		SET
+			title = #{title},
+			content = #{content}
+		WHERE 
+			boardid = #{boardid}
+	</update>
+	
+	<delete id="deleteBoardItem" parameterType="Board">
+		delete from board where boardid = #{boardid}
+	</delete>
+	
+</mapper>	

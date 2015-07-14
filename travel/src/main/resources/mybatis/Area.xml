@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Area">
+    <resultMap type="Area" id="ResultArea">
+        <result property="local" column="local"/>
+        <result property="localcontent" column="localcontent"/>
+        <result property="x" column="x"/>
+        <result property="y" column="y"/>
+        <result property="areaimage" column="areaimage"/>
+    </resultMap>
+   
+    <select id="getArea" resultMap="ResultArea" >
+        select * from area
+    </select>
+     <select id="areaOne" resultType="Area" parameterType="java.util.Map">
+		select * from area where local=#{local}
+ 	 </select>
+ 	 <select id="areaname" resultType="Area" resultMap="ResultArea">
+		select * from area
+  	</select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PlannerLine">
+  <!-- Use type aliases to avoid typing the full classname every time. -->
+  <resultMap id="PlannerLineResult" type="PlannerLine">
+    <result property="plannerid" column="plannerid"/>
+    <result property="plannername" column="plannername"/>
+    <result property="memberid" column="memberid"/>
+    <result property="lineid" column="lineid"/>
+    <result property="regdate" column="regdate"/>
+    <result property="ongoing" column="ongoing"/>
+    <result property="lineorder" column="lineorder"/>
+    <result property="startpoint" column="startpoint"/>
+    <result property="endpoint" column="endpoint"/>
+    <result property="readcount" column="readcount"/>
+  </resultMap>
+  <select id="diary" resultType="PlannerLine" parameterType="java.util.Map">
+	select p.plannername , p.memberid , p.lineorder , l.startpoint , l.endpoint from planner p , line l where p.lineid=l.lineid and ongoing=1 and memberid=#{memberid}
+  </select>
+</mapper>

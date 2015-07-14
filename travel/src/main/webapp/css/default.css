@@ -1,0 +1,316 @@
+.login-window { display:inline-block;
+	font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
+	 text-decoration:none; } 
+.forgot { display:inline-block;
+	font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
+	 text-decoration:none;  } 
+#h { display:inline-block;
+	font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
+	 text-decoration:none;color: white; } 
+
+body{font-size:15px; width:1250px; margin:auto; padding-top: 20px; height: 890px;}
+.iframe{width:220px; height: 270px}
+
+
+.registration_form { margin:0 auto; width:500px; padding:14px; } 
+.label {
+width: 10em;
+float: left;
+margin-right: 0.5em;
+display: block
+}
+.submit {//Code to place the submit putton
+float:right;
+}
+fieldset {
+background:#EBF4FB none repeat scroll 0 0;//Gives the form a nice blue background
+border:2px solid #B7DDF2;//with a blue border
+width: 500px;//of width 500 pixel
+}
+legend {
+color: #fff;
+background: #80D3E2;
+border: 1px solid #781351;
+padding: 2px 6px
+}
+.elements {
+padding:20px;//space between each form element
+}
+p {
+border-bottom:1px solid #B7DDF2;
+color:#666666;
+font-size:11px;
+margin-bottom:20px;
+padding-bottom:10px;
+}
+.calendar{width: 1070px; height: 860px; }
+.schedule{
+	text-decoration: none; color: white;
+}
+.home{
+	text-decoration: none;
+	font-size: 15px;
+}
+/* tab css  */
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+  margin-left:74px;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#cssmenu:after,
+#cssmenu > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#cssmenu {
+  text-align: center;	
+  width: 1100px;
+  border-bottom: 3px solid #007DD5;  
+  line-height: 1;
+  
+}
+#cssmenu ul {
+   
+  width:1100px;
+  margin:auto; 
+  padding:0;
+  background: #ffffff;
+}
+#cssmenu > ul > li {
+  float: left;
+  width:140px;
+  height: 46px;
+}
+#cssmenu.align-center > ul {  
+  text-align: center;
+}
+#cssmenu.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+#cssmenu.align-right > ul > li {
+  float: right;
+}
+#cssmenu.align-right > ul > li > a {
+  margin-right: 0;
+  margin-left: -4px;
+}
+#cssmenu > ul > li > a {
+  z-index: 2;  
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #444444;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;    
+  display:block;
+  padding:13px 0 11px;
+  font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
+  margin-left:1px;
+  height: 46px;
+}
+#cssmenu > ul > li.active > a,
+#cssmenu > ul > li:hover > a,
+#cssmenu > ul > li > a:hover {
+  color: #ffffff;
+}
+#cssmenu > ul > li > a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 120%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  content: "";
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: perspective(5px) rotateX(2deg);
+  -webkit-transform-origin: bottom;
+  -moz-transform: perspective(5px) rotateX(2deg);
+  -moz-transform-origin: bottom;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom;
+}
+#cssmenu > ul > li.active > a:after,
+#cssmenu > ul > li:hover > a:after,
+#cssmenu > ul > li > a:hover:after {
+  background: #007DD5;
+}
+
+/* 전국 맛집 css*/
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+#hotmenu,
+#hotmenu ul,
+#hotmenu ul li,
+#hotmenu ul li a,
+#hotmenu #menu-button {
+  top: -7px;
+  margin-left :44px;
+  height : 50px;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#hotmenu:after,
+#hotmenu > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#hotmenu #menu-button {
+  display: none;
+}
+#hotmenu {
+  width: 1100px;
+  border: 3px solid #007DD5;
+  border-radius: 3px;
+  font-family: 'Oswald', sans-serif;
+  line-height: 1;
+  background: #f7f7f7;
+  box-shadow: 1px 1px 0 #005695, 2px 2px 0 #005695, 3px 3px 3px rgba(0, 0, 0, 0.35);
+}
+#hotmenu > ul {
+  background: url('images/bg.png');
+}
+#hotmenu > ul > li {
+  float: left;
+}
+#hotmenu.align-center > ul {  
+  text-align: center;
+}
+#hotmenu.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+#hotmenu.align-right > ul > li {
+  float: right;
+}
+#hotmenu > ul > li > a {
+  padding: 20px 25px;
+
+  font-size: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #007DD5;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+}
+#hotmenu > ul > li > a:hover,
+#hotmenu > ul > li:hover > a,
+#hotmenu > ul > li.active > a {
+  color: #444444;
+}
+#hotmenu #menu-indicator {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  height: 0;
+  width: 0;
+  border: 5px solid transparent;
+  border-bottom-color: #0062aa;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+#hotmenu.small-screen {
+  width: 100%;
+}
+#hotmenu.small-screen > ul,
+#hotmenu.small-screen.align-center > ul {
+  width: 100%;
+  text-align: left;
+}
+#hotmenu.small-screen > ul > li,
+#hotmenu.small-screen.align-center > ul > li {
+  float: none;
+  display: block;
+  border-top: 1px solid rgba(100, 100, 100, 0.1);
+}
+#hotmenu.small-screen > ul > li > a {
+  padding: 18px 25px;
+}
+#hotmenu.small-screen > ul > li:after,
+#hotmenu.small-screen > ul > li:before {
+  display: none;
+}
+#hotmenu.small-screen #menu-button {
+  display: block;
+  padding: 18px 25px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fd8a17;
+  background: url('images/bg.png');
+}
+#hotmenu.small-screen #menu-button.menu-opened {
+  color: #444444;
+}
+#hotmenu.small-screen #menu-button:after {
+  content: "";
+  position: absolute;
+  right: 25px;
+  top: 19.5px;
+  display: block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border-top: 2px solid #fd8a17;
+  border-bottom: 2px solid #fd8a17;
+  width: 18px;
+  height: 3px;
+  
+}
+
+#hotmenu.small-screen #menu-button:before {
+  content: "";
+  position: absolute;
+  right: 25px;
+  top: 29.5px;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fd8a17;
+}
+#hotmenu.small-screen #menu-button.menu-opened:before {
+  background: #444444;
+}
+#hotmenu.small-screen #menu-indicator {
+  display: none;
+}
