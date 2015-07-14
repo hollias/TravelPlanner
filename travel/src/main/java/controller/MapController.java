@@ -307,10 +307,11 @@ public class MapController {
 			String slist = "";
 			model.addAttribute("slist", slist);
 			
-		}else{
-			
+		}else{			
 			List<ScheduleHot> slist = ms.getLocalSchedule(loginUser.getMemberid(),plannerTitle,local);
+			System.out.println(slist.get(0).getLocal());
 			model.addAttribute("slist", slist);
+			
 		}
 			
 		List<PlannerS> ps = ms.selectOngoingPlannerS(plannerId);
