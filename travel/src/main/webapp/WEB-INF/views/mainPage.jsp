@@ -16,23 +16,16 @@
 	=============================새로 만들어진 플레너=============================</div>
 	<table style="height: 300">
 		<tr>
-			<td style=" width: 300; height:300;margin-top:0; "><a href="planul.do">
-			<iframe src="introMap.jsp" style="border: 0; width: 300; height:210;" >
+		<c:forEach var="pl" items="${pl }">
+			<td style=" width: 300; height:300;margin-top:0; ">
+			<a href="planul.do">
+			<h2>제목 : ${pl.getPlannername()}</h2>
+			<iframe src="introMap.do?plannername=${pl.getPlannername()}" >
 			</iframe><b>
-			이거슨 플레너</b></a></td>
-			<td style=" width: 300; height:300;margin-top:0; "><a href="planul.do">
-			<iframe src="introMap.jsp" style="border: 0; width: 300; height:210;" >
-			</iframe><b>
-			이거슨 플레너</b></a></td>
-			<td style=" width: 300; height:300;margin-top:0; "><a href="planul.do">
-			<iframe src="introMap.jsp" style="border: 0; width: 300; height:210;" >
-			</iframe><b>
-			이거슨 플레너</b></a></td>
-			<td style=" width: 300; height:300;margin-top:0; "><a href="planul.do">
-			<iframe src="introMap.jsp" style="border: 0; width: 300; height:210;" >
-			</iframe><b>
-			이거슨 플레너</b></a></td>
-		</tr>
+			이거슨 플레너</b></a>
+				</td>
+			</c:forEach>
+			</tr>
 	</table>
 </body>
 </html>
