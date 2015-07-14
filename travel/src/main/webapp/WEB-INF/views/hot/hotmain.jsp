@@ -44,7 +44,7 @@
 			<li><a href="hotwrite.do">내가스팟등록하기</a></li>
 		</ul>
 	</div>
-	<table border="1" style="width: 1092; margin-left: 74px;"> 
+	<table style="width: 1092; margin-left: 74px;"> 
 		<tr>
 			<td colspan="5">
 				<div id="image_list_1">
@@ -64,13 +64,16 @@
 				for(int i=0 ; i<ha.size(); i++ ){a++;
 					%>
 						<td>
-							<table border="1">
-								<tr><td><a href href="#" class="osx">
-								<img src="resources/upload/<%= ha.get(i).getHotimage() %>" width="150" height="150">
-								<input type="hidden" class="hotid" value="<%= ha.get(i).getHotid() %>">
-								</a></td></tr>
-								<tr><td><%=a%>위. <%=ha.get(i).getHotname()%></td></tr>
-							</table>
+							<form action="#" >
+								<fieldset>
+									<legend><a href href="#" class="osx"><%=a%>위<input type="hidden" class="hotid" value="<%= ha.get(i).getHotid() %>"></a></legend>
+									<div class="elements1">
+									<label class="label" for="name"><p><img src="resources/upload/<%= ha.get(i).getHotimage() %>" width="150" height="150"></label>
+									<label class="label" for="name"><p><%=ha.get(i).getHotname()%></label>
+									<label class="label" for="name"><p><%=ha.get(i).getLocal()%></label>
+									</div>
+								</fieldset>
+							</form>
 						</td>
 					<%
 						if((i+1)%5==0){

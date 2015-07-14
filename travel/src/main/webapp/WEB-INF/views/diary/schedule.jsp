@@ -36,7 +36,7 @@
 	<table border="1">
 		<tr>
 			<td>
-				<form action="#" class="calendar_form">
+				<form action="#" >
 					<fieldset>
 						<legend>일정표</legend>
 						<div class="elements">
@@ -87,7 +87,7 @@
 				<form action="#" class="calendar_form">
 					<fieldset>
 						<legend>가이드북</legend>
-						<div class="elements">
+						<div class="elements1">
 						<c:forEach var="calendar" items="${calendar }">
 						<label class="label" for="name"><a href="hotarea.do?local=${calendar.local}&plannername=
 				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>${calendar.local }</a></label>
