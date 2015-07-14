@@ -88,7 +88,7 @@ public class MemberController {
 			session.setAttribute(WebConstants.USER_KEY, loginUser);
 			model.addAttribute("loginUser", loginUser);
 			model.addAttribute("member", member);
-			return "joinus/loginSuccess";
+			return "main";
 		}
 	}	
 	@RequestMapping(value="mypage")//내정보 페이지
@@ -106,7 +106,7 @@ public class MemberController {
 		session.setAttribute(WebConstants.USER_KEY, null);
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
 		model.addAttribute("loginUser", loginUser);
-		return "joinus/logout";
+		return "main";
 	}	
 	@RequestMapping(value="memberClear")//회원탈퇴
 	public String memberClear(HttpSession session, Model model, String memberid){
