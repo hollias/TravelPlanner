@@ -45,6 +45,7 @@ public class MapController {
 	      if(loginUser != null){
 	         model.addAttribute("loginUser", loginUser);
 	      }
+	      System.out.println();
 	      List<Area> al = (List<Area>) ms.getArea();
 	      if(loginUser == null){
 	         loginUser = new Member();
