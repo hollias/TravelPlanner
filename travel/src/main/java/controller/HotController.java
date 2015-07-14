@@ -127,7 +127,7 @@ public class HotController {
 		hot.setReadcount(0);
 		hot.setHotcontent(hot.getHotcontent().replaceAll("\n", "").replaceAll("\t", "").replaceAll("\r", "").replaceAll("'", "&apos;"));
 		rs.inserthot(hot);
-		return "hot/hotmain";
+		return "redirect:hotmain.do";
 	}
 	@RequestMapping(value = "hotupdate")
 	public String hotupdate(Model model , Hot hot, HttpSession session,String hotid){
