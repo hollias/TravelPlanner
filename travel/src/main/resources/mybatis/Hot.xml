@@ -59,20 +59,20 @@
 		delete from hot where hotid=#{hotid}
   </delete>
   <select id="hotlist" resultType="Hot" resultMap="HotResult">
-	<![CDATA[ select hotimage, hotid, hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid, local,hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(    
+      select hotimage,local,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot) where rank <=20 ]]>
   </select>
   <select id="htrest" resultType="Hot" resultMap="HotResult">
-	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=1) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid, local,hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(    
+      select hotimage,local,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot where hotkind=1) where rank <=20 ]]>
   </select>
   <select id="httourist" resultType="Hot" resultMap="HotResult">
-	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=2) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid, local,hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(    
+      select hotimage,local,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot where hotkind=2) where rank <=20 ]]>
   </select>
   <select id="htstay" resultType="Hot" resultMap="HotResult">
-	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=3) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid, local,hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(    
+      select hotimage,local,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot where hotkind=3) where rank <=20 ]]>
   </select>
   <select id="hotajax2" resultType="Hot" parameterType="java.util.Map">
 	select hotname,hotcontent,hotprice from hot where hotname=#{hotname} and x=#{x}
