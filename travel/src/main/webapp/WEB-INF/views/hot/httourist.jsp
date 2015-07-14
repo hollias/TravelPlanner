@@ -81,7 +81,7 @@
 							</tr><tr>
 					<%
 							}
-						}
+						 }
 					%>
 </table>
 <div id="osx-modal-content" class="msg">
