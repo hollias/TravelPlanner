@@ -70,6 +70,7 @@ public class ScheduleHotDaoImpl implements ScheduleHotDao{
 		map.put("memberid", memberid);
 		map.put("plannerName", plannerTitle);
 		map.put("local", local);
+		
 		return session.selectList("getLocalSchedule",map);
 	}
 	@Override
