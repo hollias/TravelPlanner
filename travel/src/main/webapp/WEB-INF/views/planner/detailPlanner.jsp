@@ -48,7 +48,7 @@
       </table>
    </c:forEach>
     </c:if>
-    <input type="hidden" id="dday" value="1">
+    
     </div>
     <input type="submit" value="확인">
 </td><td >     
@@ -182,7 +182,7 @@
                  // - absolute 의 경우 autoPosition 이 동작하지 않습니다. 
                  mapInfoTestWindow.setContent('<DIV style="border-top: 1px solid; border-bottom: 2px groove black; border-left: 1px solid; border-right: 2px groove black; margin-bottom: 1px; color: black; background-color: white; width: auto; height: auto;">'+
                          '<span style="color: #000000 !important; display: inline-block; font-size: 12px !important; font-weight: bold !important; letter-spacing: -1px !important; white-space: nowrap !important; padding: 2px 2px 2px 2px !important">'+
-                         '<table><tr id="item"><td><img src="images/car4.jpg"></td><td>'+oTarget.getTitle()+'<br>안녕하세요'+oTarget.getTitle()+' 입니다.<input id="btn" type="button" value="추가" onclick="appendItem(this)"><input type="hidden" class="local" value="'+oTarget.getTitle()+'" ><input type="hidden" id="mapx" value=""><input type="hidden" id="mapy" value=""><input type="hidden" name="plannerId" id="plannerId" value="${plannerId }"><input type="hidden" name="plannerName" id="plannerName" value="${plannerTitle }"></td></tr></table></span></div>');                 
+                         '<table><tr id="item"><td><img src="images/car4.jpg"></td><td>'+oTarget.getTitle()+'<br>안녕하세요'+oTarget.getTitle()+' 입니다.<input id="btn" type="button" value="추가" onclick="appendItem(this)"><input type="hidden" class="local" value="'+oTarget.getTitle()+'" ><input type="hidden" id="mapx" value=""><input type="hidden" id="mapy" value=""><input type="hidden" name="plannerId" id="plannerId" value="${plannerId }"><input type="hidden" name="plannerName" id="plannerName" value="${plannerTitle }"><input type="hidden" id="dday" value="${dday}"><input type="hidden" id="local" value="${local}"></td></tr></table></span></div>');                 
                  
                
                  mapInfoTestWindow.setPoint(oTarget.getPoint());
@@ -215,11 +215,11 @@
         var plannerId = $(item).parent().find("#plannerId").val();
         var plannerName = $(item).parent().find("#plannerName").val();
         
-              
+        var local = $('#local').val();      
         var dday = $('#dday').val();
         
          
-         var sendData = 'plannerId='+plannerId+'&plannerName='+plannerName+'&dday='+dday+'&x='+mapx+'&y='+mapy;
+         var sendData = 'plannerId='+plannerId+'&plannerName='+plannerName+'&local='+local+'&dday='+dday+'&x='+mapx+'&y='+mapy;
          
       $.ajaxSetup({
          type:"POST",

@@ -65,12 +65,15 @@ create table hot(
    readcount number(10),         --readcount
    memberid varchar2(15)       --회원아이디
 );
+
+
+select * from planners p,area a where plannerid = 1 and p.local = a.local order by lineorder;
 select lineorder,x,y from area a ,planner p , planners ps where p.plannername='새로운 플레너d'
       -- and memberid='a'
       and p.plannerid = ps.plannerid  and a.local = ps.local
       order by lineorder;
-select * from planners;
 select * from planner;
+select * from hot;
 select sum(day) day from planners where plannerid=1;
 select regdate+(select sum(day) day from planners where plannerid=1) as da  from planners where plannerid=1 and lineorder=1;
 insert into planners values(1,'서울','2015-01-23',6,3);

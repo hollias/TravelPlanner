@@ -148,7 +148,7 @@ public class MapController {
       hot.setX(x1);
       int hotId = ms.findHotId(hot);
       schedule.setHotid(hotId);
-     // System.out.println("pn="+plannerName1+"dday="+dday);
+      System.out.println("local="+local+"dday="+dday+"planid"+plannerId);
       int result = ms.insertSchedule(schedule);
       
       List<ScheduleHot> list = ms.selectDdaySchedule(dday, plannerName,
@@ -295,7 +295,7 @@ public class MapController {
    public String selectDday(String dday, String plannerTitle,
          String startDate, Model model, HttpSession session) {
       Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
-
+      
       Planner planner = new Planner();
       planner.setMemberid(loginUser.getMemberid());
 
@@ -316,10 +316,11 @@ public class MapController {
       model.addAttribute("y", area.getY());
 
       List<Hot> al = ms.getHot(local);
-
+      
       model.addAttribute("hot", al);
-      model.addAttribute("plannerId", planner.getPlannerid());
-      model.addAttribute("day", dday);
+      model.addAttribute("plannerId", plannerId);
+      model.addAttribute("local",local);
+      model.addAttribute("dday", dday);
 
       return "planner/detailPlanner";
    }
