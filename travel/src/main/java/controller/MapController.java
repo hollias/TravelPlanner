@@ -277,13 +277,15 @@ public class MapController {
       model.addAttribute("plannerS", ps);
 
       String local = ps.get(0).getLocal();
-
+      int lineorder = ps.get(0).getLineorder();
       Area area = rs.areaOne(local);
       model.addAttribute("x", area.getX());
       model.addAttribute("y", area.getY());
 
       List<Hot> al = ms.getHot(local);
-
+      
+      model.addAttribute("lineorder", lineorder);
+      model.addAttribute("local", local);
       model.addAttribute("hot", al);
       model.addAttribute("plannerId", planner.getPlannerid());
       model.addAttribute("day", day1[0]);
@@ -292,10 +294,12 @@ public class MapController {
    }
 
    @RequestMapping(value = "selectDday")
-   public String selectDday(String dday, String plannerTitle,
+   public String selectDday(String dday, String plannerTitle,String local,String lineorder,
          String startDate, Model model, HttpSession session) {
       Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
-      
+      int dday1 = Integer.parseInt(dday);
+      int lineorder1 = Integer.parseInt(lineorder);
+    		  
       Planner planner = new Planner();
       planner.setMemberid(loginUser.getMemberid());
 
@@ -309,14 +313,20 @@ public class MapController {
       model.addAttribute("slist", slist);
 
       List<PlannerS> ps = ms.selectOngoingPlannerS(plannerId);
-      String local = ps.get(0).getLocal();
-
+      
+      
       Area area = rs.areaOne(local);
       model.addAttribute("x", area.getX());
       model.addAttribute("y", area.getY());
 
       List<Hot> al = ms.getHot(local);
       
+      List<PlannerS> ps1 = ms.selectOngoingPlannerS(plannerId);
+      model.addAttribute("plannerS", ps1);
+      String dd = ps1.get(lineorder1-1).getDay();
+      
+      model.addAttribute("lineorder",lineorder);      		
+      model.addAttribute("day",dd);
       model.addAttribute("hot", al);
       model.addAttribute("plannerId", plannerId);
       model.addAttribute("local",local);
