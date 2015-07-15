@@ -1,5 +1,6 @@
 package controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -175,7 +176,7 @@ public class MapController {
 	
 
 	@RequestMapping(value = "MapSubmit")
-	public String MapSubmit(String startDate, String plannerTitle, String day,
+	public String MapSubmit(String startdate, String plannerTitle, String day,
 			Model model, HttpSession session) {	
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
 		//planner 정보 저장
@@ -209,19 +210,43 @@ public class MapController {
 		// 플래너 일정 만드는 부분
 		PlannerS planners = new PlannerS();
 		String[] day1 = day.split(",");
-		for (int i = 0; i < list.size(); i++) {			
+		/*String[] day2 = new String[day1.length+1];
+		System.arraycopy(day1, 0, day2, 1, day1.length);
+		day2[0]= "0";
+		System.out.println("day = "+day2[0]);*/
+		Date da = null;
+		for (int i = 0; i < list.size(); i++) {
+			
 			planners.setPlannerid(list.get(i).getPlannerid());
 			planners.setLocal(list.get(i).getLocal());
 			planners.setLineorder(i);
+			//planners.setDd(day2[i]);
 			planners.setDay(day1[i]);
-			planners.setRegdate(startDate);
+			if (da==null){
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");				
+				try {
+					
+					da = (Date) transFormat.parse(startdate);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			
+				
+				planners.setDa(da);
+			}else{				
+				da = ms.da(list.get(i).getPlannerid());
+				
+				planners.setDa(da);
+			}			
 			ms.submitPlannerS(planners);
+			
+			
 		}
 		
 		
 		//상세 일정페이지로 보낼 데이터들
 		model.addAttribute("plannerTitle", plannerTitle);
-		model.addAttribute("startDate", startDate);
+		model.addAttribute("startDate", startdate);
 		
 		int sc = ms.scheduleCount(loginUser.getMemberid(),plannerTitle);
 		
@@ -256,6 +281,8 @@ public class MapController {
 	public String selectDday(String dday,String plannerTitle,String startDate, 
 			Model model, HttpSession session) {	
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+		
+		
 		
 		Planner planner = new Planner();		
 		planner.setMemberid(loginUser.getMemberid());

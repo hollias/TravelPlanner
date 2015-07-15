@@ -9,6 +9,7 @@
     <result property="regdate" column="regdate"/>
     <result property="lineorder" column="lineorder"/>	
     <result property="day" column="day"/>
+	<result property="da" column="da"/>
   </resultMap>  
   
     <insert id="insertPlannerS" parameterType="PlannerS">		
@@ -47,10 +48,13 @@
 	<selectKey keyProperty="lineorder" resultType="Integer"  order="BEFORE">
 			SELECT NVL(MAX(lineorder),0) + 1 FROM planners
 		</selectKey>
-		<![CDATA[ insert into plannerS values (#{plannerid},#{local},Sysdate,#{lineorder},#{day}) ]]>
+		<![CDATA[ insert into plannerS values (#{plannerid},#{local},#{da},#{lineorder},#{day}) ]]>
 	</insert>
 	
   	<select id="getLocalBylineorder" parameterType="java.util.Map" resultType="PlannerS">		
 		<![CDATA[ select * from planners where plannerid = #{plannerId} and lineorder=#{lineorder} ]]>
+	</select>
+	<select id="reda" parameterType="int" resultType="java.util.Date">
+		<![CDATA[ select regdate+(select sum(day) day from planners where plannerid=#{plannerid}) as da from planners where plannerid=#{plannerid} and lineorder=1]]>
 	</select>
 </mapper>

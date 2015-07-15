@@ -67,6 +67,10 @@ create table hot(
    memberid varchar2(15)       --회원아이디
 );
 
+select * from planners;
+select sum(day) day from planners where plannerid=1;
+select regdate+(select sum(day) day from planners where plannerid=1) as da  from planners where plannerid=1 and lineorder=1;
+insert into planners values(1,'서울','2015-01-23',6,3);
 select * from schedule s,hot h where s.hotid =h.hotid and h.local='서울' and s.plannerName='놀자!' and h.memberid='a';
 select * from schedule s, hot h where s.hotid =h.hotid and s.memberid='a' and plannername='놀자!' and local='대전'
 select * from schedule s,hot h where s.hotid =h.hotid and local='서울' and plannerName='놀자!';
@@ -91,7 +95,7 @@ select * from planners p,area a where plannerid = 1 and p.local = a.local order 
 select * from PLANNERS where plannerid = 9;
 select count(*) from planners where plannerid =1;
 select plannername from planner where plannerid = 1;
-select * from planner;
+select * from planners;
 
 insert into schedule values(1,'놀자1','a',1,1);
 insert into schedule values(2,'놀자1','a',2,2);

@@ -138,7 +138,10 @@ public class MapServiceImpl implements MapService{
 	public void submitPlannerS(PlannerS plannerS) {
 		psd.submitPlannerS(plannerS);		
 	}
-
+	@Override
+	public void submitPlannerS2(PlannerS plannerS) {
+		psd.submitPlannerS(plannerS);		
+	}
 
 	@Override
 	public void plannerSAllDelete(int plannerId) {
@@ -214,6 +217,12 @@ public class MapServiceImpl implements MapService{
 	public int scheduleLocalCount(String memberid, String plannerTitle,
 			String local) {
 		return shd.scheduleLocalCount(memberid,plannerTitle,local);
+	}
+
+
+	@Override
+	public Date da(int plannerId) {
+		return psd.da(plannerId);
 	}
 
 

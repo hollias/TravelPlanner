@@ -51,6 +51,11 @@ public class PlannerSDaoImpl implements PlannerSDao{
 		session.insert("submitPlannerS", plannerS);
 		
 	}
+	@Override
+	public void submitPlannerS2(PlannerS plannerS) {
+		session.insert("submitPlannerS2", plannerS);
+		
+	}
 
 	@Override
 	public void plannerSAllDelete(int plannerId) {
@@ -66,6 +71,11 @@ public class PlannerSDaoImpl implements PlannerSDao{
 		map.put("lineorder", lineorder);
 		map.put("plannerId", plannerId1);
 		return session.selectOne("getLocalBylineorder", map);
+	}
+
+	@Override
+	public Date da(int plannerId) {
+		return session.selectOne("reda", plannerId);
 	}
 	
 

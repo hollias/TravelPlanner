@@ -32,6 +32,7 @@ public interface MapService {
 	//진행중인 플래너S를 아이디를 통해 가져오는것
 	public List<PlannerS> selectOngoingPlannerS(int plannerId);
 	public void submitPlannerS(PlannerS plannerS);
+	public void submitPlannerS2(PlannerS plannerS);
 	public void plannerSAllDelete(int plannerId);
 	public void updatePlannerName(Planner planner);
 	//local의 hot을 가져오는것
@@ -54,6 +55,6 @@ public interface MapService {
 	public PlannerS getLocalBylineorder(String lineorder, int plannerId);
 	//지역에 해당하는 스케쥴의 갯수를 가져옴
 	public int scheduleLocalCount(String memberid,String plannerTitle,String local);
-	
-	
+	// Date 검색해서 day 더해서 가져오기
+	public Date da(int plannerId);
 }

@@ -13,6 +13,8 @@ public interface PlannerSDao {
 	public int plannerSCount(int plannerId);
 	public List<PlannerS> selectOngoingPlannerS(int plannerId);
 	public void submitPlannerS(PlannerS plannerS);
+	public void submitPlannerS2(PlannerS plannerS);
 	public void plannerSAllDelete(int plannerId);
 	public PlannerS getLocalBylineorder(String lineorder,int plannerId);
+	public Date da(int plannerId);
 }

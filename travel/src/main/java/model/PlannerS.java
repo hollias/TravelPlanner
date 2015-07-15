@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 
 public class PlannerS {
 	private int plannerid;
@@ -9,7 +11,14 @@ public class PlannerS {
 	private String day;
 	private String dd;
 	private String mm;
+	private Date da;
 	
+	public Date getDa() {
+		return da;
+	}
+	public void setDa(Date da) {
+		this.da = da;
+	}
 	public int getPlannerid() {
 		return plannerid;
 	}
