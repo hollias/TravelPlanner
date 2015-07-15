@@ -24,31 +24,31 @@
 <body>
 <form action="detailSubmit.do" method="post">
 <table>
-	<tr>
-	<c:forEach var="plannerS" items="${plannerS }">
-		<td><a href="selectLocal.do?lineorder=${plannerS.lineorder }&plannerTitle=${plannerTitle}&startDate=${startDate}">${plannerS.local }</a></td>
-	</c:forEach>
-	</tr>
+   <tr>
+   <c:forEach var="plannerS" items="${plannerS }">
+      <td><a href="selectLocal.do?lineorder=${plannerS.lineorder }&plannerTitle=${plannerTitle}&startDate=${startDate}">${plannerS.local }</a></td>
+   </c:forEach>
+   </tr>
 </table>
 <table><tr style="vertical-align: top;"><td>
-	<c:forEach var="i" begin="1" end="${day }">
-		<div class="day"><a href="selectDday.do?dday=${i }&plannerTitle=${plannerTitle}&startDate=${startDate}">${i }일차</a></div>
-	</c:forEach>
-	<div>입력할 플래너 : ${plannerTitle }</div>
-	<div>여행출발일자 : ${startDate } </div>
+   <c:forEach var="i" begin="1" end="${day }">
+      <div class="day"><a href="selectDday.do?dday=${i }&plannerTitle=${plannerTitle}&startDate=${startDate}">${i }일차</a></div>
+   </c:forEach>
+   <div>입력할 플래너 : ${plannerTitle }</div>
+   <div>여행출발일자 : ${startDate } </div>
     
     <div id="msg">
     <c:if test="${slist != null }">
-	    <c:forEach var="list" items="${slist }">
-		<table id="stable" border="1">	
-			<tr>
-			<td><img alt="" src="images/${list.hotimage }" width="100"></td><td>${list.hotname }</td>
-			<td><input type="hidden" id="local" value="${list.scheduleid }">${list.hotcontent }</td>		
-			<td><input type="button" value="취소" onclick="cancel(this)"></td></tr>	
-		</table>
-	</c:forEach>
+       <c:forEach var="list" items="${slist }">
+      <table id="stable" border="1">   
+         <tr>
+         <td><img alt="aa" src="resources/upload/${list.hotimage }" width="100"></td><td>${list.hotname }</td>
+         <td><input type="hidden" id="local" value="${list.scheduleid }"> 
+         <input type="button" value="취소" onclick="cancel(this)"></td></tr>   
+      </table>
+   </c:forEach>
     </c:if>
-    
+    <input type="hidden" id="dday" value="1">
     </div>
     <input type="submit" value="확인">
 </td><td >     
@@ -56,22 +56,22 @@
 
 <script type="text/javascript">   
 
-	var firstX = <%= request.getAttribute("x")%>
-	var firstY = <%= request.getAttribute("y")%>
-	var aPoints;
+   var firstX = <%= request.getAttribute("x")%>
+   var firstY = <%= request.getAttribute("y")%>
+   var aPoints;
     var oPoint = new nhn.api.map.LatLng(firstY,firstX);   // 초기 좌표
     
      <%
      List<Hot> al = (List)request.getAttribute("hot");
      for(int i = 0 ; i<al.size() ; i++){
-    	 
+        
      %>
         var MapX = <%=al.get(i).getX()%>;
         var MapY = <%=al.get(i).getY()%>;
         var <%=al.get(i).getHotname()%> = new nhn.api.map.LatLng(MapY,MapX);
      <%
      }
- 	 %>
+     %>
      
      
      // 줌 레벨 값
@@ -163,7 +163,7 @@
     });
     
    
- 	
+    
  
      oMap.attach('click', function(oCustomEvent) {
         var oPoint = oCustomEvent.point;
@@ -201,14 +201,14 @@
      });
      
        
-  	
-	
-  	
+     
+   
+     
      function appendItem(item){
-    	 
-    	 //input에 저장된 x,y좌표를 opoint배열에 저장하는것
-    	 var mapx = $(item).parent().find("#mapx").val();
-    	 var mapy = $(item).parent().find("#mapy").val();
+        
+        //input에 저장된 x,y좌표를 opoint배열에 저장하는것
+        var mapx = $(item).parent().find("#mapx").val();
+        var mapy = $(item).parent().find("#mapy").val();
         var opoint;        
         opoint = new nhn.api.map.LatLng(mapy,mapx);
         
@@ -229,17 +229,17 @@
       $.ajax({data:sendData});
       return false;      
    }
- 	//스케쥴S를 넣는것을 고민해봐야함.
+    //스케쥴S를 넣는것을 고민해봐야함.
     function cancel(a){
-    	 
-    	 var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();    	 
-    	 $(a).parent().parent().parent().parent().remove();
-    	 
-    	 var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
+        
+        var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();        
+        $(a).parent().parent().parent().parent().remove();
+        
+        var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
          aPoints.splice(aa,1); 
          oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
-    	 var sendData = 'index='+aa;    	 
-    	 $.ajaxSetup({
+        var sendData = 'index='+aa;        
+        $.ajaxSetup({
              type:"POST",
              url:"deletePlannerS.do",
              dataType:"text",
@@ -248,14 +248,14 @@
           $.ajax({data:sendData});
           //window.location.reload(true);
           return false;
-    	  
+         
      }
- 	
- 	
+    
+    
      </script>
       
-</td></tr></table>      	
-	
+</td></tr></table>         
+   
 </form>
 </body>
 </html>
