@@ -17,7 +17,11 @@
 	.recode-wrap{text-align: right; color: #888;}
 	.hit-wrap{color:#888; margin: 10px 0;}
 	.viewForm{margin: 20px 0 0 0;}
-
+	.contents-wrap > p{
+			border-bottom:none;
+			margin-bottom:20px;
+			padding-bottom:10px;
+	}
 </style>
 </head>
 
