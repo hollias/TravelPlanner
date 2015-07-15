@@ -220,7 +220,7 @@
         
          
          var sendData = 'plannerId='+plannerId+'&plannerName='+plannerName+'&local='+local+'&dday='+dday+'&x='+mapx+'&y='+mapy;
-         
+          
       $.ajaxSetup({
          type:"POST",
          url:"addSchedule.do",
