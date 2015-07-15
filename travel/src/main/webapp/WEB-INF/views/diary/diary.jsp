@@ -34,11 +34,11 @@
 <form action="#" class="registration_form" style="margin: 0px; padding: 0px;">
 	<fieldset style="margin-left: 70px; width: 1080px;">
 		<legend>현재플래너</legend>
-		<a href="home.do?plannername=${ plannerOne.plannername}&plannerid=${plannerOne.plannerid}">
+		<a href="home.do?plannername=${plannerOne.plannername }&plannerid=${plannerOne.plannerid}">
 			<table>
 				<tr>
 					<td rowspan="2">
-						<iframe src="diaryMap.do?plannername=${plannerName.plannername}" class="iframe"></iframe>
+						<iframe src="diaryMap.do?plannername=${plannerOne.plannername }" class="iframe"></iframe>
 					</td>
 					<td>
 						<p style="font-size: 35px;">제목 :  ${plannerOne.plannername }</p>

@@ -25,7 +25,7 @@ public class PlannerSAreaDaoImpl implements PlannerSAreaDao{
 	}
 	public List<MapJoin> mapjoin(String memberid, String plannername) {
 		Map<String ,String> map = new HashMap<String,String>();
-		map.put("memberid", memberid);
+		map.put("memberid",memberid);
 		map.put("plannername",plannername);
 		return session.selectList("mj",map);
 	}

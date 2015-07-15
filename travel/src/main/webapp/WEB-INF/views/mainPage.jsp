@@ -18,11 +18,11 @@
 		<tr>
 		<c:forEach var="pl" items="${pl }">
 			<td style=" width: 300; height:300;margin-top:0; ">
-			<a href="planul.do">
+			<a href="home.do?plannername=${pl.getPlannername()}&plannerid=${pl.getPlannerid()}&memberid=${pl.getMemberid()}">
 			<h2>제목 : ${pl.getPlannername()}</h2>
-			<iframe src="introMap.do?plannername=${pl.getPlannername()}" >
+			<iframe style="border: 0; height: 270px" src="introMap.do?plannername=${pl.getPlannername()}" >
 			</iframe><b>
-			이거슨 플레너</b></a>
+			작성자 : ${pl.getMemberid() }</b></a>
 				</td>
 			</c:forEach>
 			</tr>

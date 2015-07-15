@@ -20,7 +20,8 @@
   <select id="mj" resultType="MapJoin" parameterType="java.util.Map">
    select lineorder,x,y from area a ,planner p , planners ps where p.plannername=#{plannername}
       <if test="memberid != 'null'">
-      and memberid=#{memberid}</if>
+      and memberid=#{memberid}
+      </if>
       and p.plannerid = ps.plannerid  and a.local = ps.local
       order by lineorder
   </select>

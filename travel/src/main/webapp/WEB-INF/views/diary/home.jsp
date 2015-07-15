@@ -59,7 +59,7 @@
 				<form action="#" class="registration_form" style="margin: 0px; padding: 0px;">
 					<fieldset>
 					<legend>지도</legend>
-					<iframe src="diaryMap.do?plannername=${plannerName.plannername}" class="iframe"></iframe>
+					<iframe src="diaryMap.do?plannername=${plannerName.plannername }&memberid=${memberid}" class="iframe"></iframe>
 					</fieldset>
 				</form>
 			</td>

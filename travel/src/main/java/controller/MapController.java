@@ -58,13 +58,19 @@ public class MapController {
 	      return "introMap";
 	   }
 	@RequestMapping(value = "diaryMap")
-	public String dairyMap(Model model,String plannername, HttpSession session) {
+	public String dairyMap(Model model,String plannername, HttpSession session,String memberid) {
+		List<MapJoin> mj = null;
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
+		if(memberid==null){
+			memberid = loginUser.getMemberid();
+			mj = rs.mapjoin(memberid, plannername);
+		}else{
+			mj = rs.mapjoin(memberid, plannername);
+		}
 		List<Area> al = (List<Area>) ms.getArea();
-		List<MapJoin> mj = rs.mapjoin(loginUser.getMemberid(), plannername); 
 		model.addAttribute("mj",mj);
 		model.addAttribute("area", al);
 		return "diary/diaryMap";

@@ -23,16 +23,30 @@ public class ScheduleHotController {
 	private RailnoService rs;
 	@RequestMapping(value="home")
 	public String total(ScheduleHot schedulehot, Model model, 
-			HttpSession session,String plannername, String plannerid){
+			HttpSession session,String plannername, String plannerid,String memberid){
+		Planner plannerName = null;
+		ScheduleHot stay = null;
+		ScheduleHot restaurant = null;
+		ScheduleHot tourist = null;
+		ScheduleHot total = null;
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
-		ScheduleHot stay = rs.stay(loginUser.getMemberid(), plannername);
-		ScheduleHot restaurant = rs.restaurant(loginUser.getMemberid(), plannername);
-		ScheduleHot tourist = rs.tourist(loginUser.getMemberid(), plannername);
-		ScheduleHot total = rs.total(loginUser.getMemberid(), plannername);
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+		if(memberid!=null){
+			 stay = rs.stay(memberid, plannername);
+			 restaurant = rs.restaurant(memberid, plannername);
+			 tourist = rs.tourist(memberid, plannername);
+			 total = rs.total(memberid, plannername);
+			 plannerName = rs.plannerName(memberid, plannername);
+		}else{
+			stay = rs.stay(loginUser.getMemberid(), plannername);
+			restaurant = rs.restaurant(loginUser.getMemberid(), plannername);
+			tourist = rs.tourist(loginUser.getMemberid(), plannername);
+			total = rs.total(loginUser.getMemberid(), plannername);
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
+		}
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
@@ -40,6 +54,7 @@ public class ScheduleHotController {
 		model.addAttribute("stay",stay);
 		model.addAttribute("tourist",tourist);
 		model.addAttribute("total",total);
+		model.addAttribute("memberid",memberid);
 		return "diary/home";
 	}
 	@RequestMapping(value="schedule")

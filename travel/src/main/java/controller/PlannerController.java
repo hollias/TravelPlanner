@@ -39,7 +39,6 @@ public class PlannerController {
 		}
 		List<Planner> list = rs.list(loginUser.getMemberid());
 		List<PlannerSJoin> diary = rs.diary(loginUser.getMemberid());
-		
 		Planner plannerOne = rs.plannerOne(loginUser.getMemberid());
 		model.addAttribute("plannerOne",plannerOne);
 		model.addAttribute("diary",diary);
