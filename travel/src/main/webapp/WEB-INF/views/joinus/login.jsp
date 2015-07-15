@@ -17,7 +17,6 @@
       <div class="login">
       <form action="login.do" method="post">
          <fieldset>
-            <legend>로그인하기</legend>
             <ul>
                <li><label><span>아이디</span><input type="text" name="memberid"></label></li>
                <li><label><span>비밀번호</span><input type="password" name="password"></label></li>

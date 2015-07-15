@@ -36,8 +36,6 @@
 <body>
 <!--WRAP-->
 <section id="wrap">
-	<!--HGROUP-->
-	<div class="hgroup"><h1>회원가입</h1></div>
 	<!--/HGROUP-->
 	<c:choose>
 		<c:when test="${not empty message }">
@@ -46,7 +44,7 @@
 	</c:choose>
 	<!--CONTENTS-->
 	<form action="join.do" method="post" name="form" onsubmit="return chk2()">		
-		<table class="write_table">
+		<table class="write_table" style="margin-left: 52px;">
 		<caption class="skip">회원가입</caption>
 		<col style="width:150px">
 		<col>
@@ -76,7 +74,7 @@
 			</tr>
 		</thead>
 		</table>			
-		<div id="h">
+		<div id="h" style="margin-left: 650px;">
 			<p><input type="submit" value="등록">&nbsp;
 			<input type="reset" value="취소">&nbsp;<a href="main.do">돌아가기</a></p>		
 		</div>			

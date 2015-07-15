@@ -64,19 +64,19 @@ $(document).ready(function() {
             <div class="container">
             <div id="content">
                   <a href="#login-box" class="login-window" id="h">로그인</a>
-                    <div id="login-box" class="login-popup">
+                    <div id="login-box" class="login-popup" style="background-color: #FFF;">
                      <a href="#" class="close" ><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
                       <form method="post" class="signin" action="login.do">
-                            <fieldset class="textbox">
+                            <fieldset class="textbox" style="background-color: #E5EDF4;">
                            <label class="memberid">
                             <span>아이디</span>
-                            <input id="memberid" name="memberid" value="" type="text" autocomplete="on" placeholder="Id">
+                            <input id="memberid" name="memberid" value="" type="text" autocomplete="on" placeholder="Id" style="background-color: #FFFFFF;">
                             </label>
                             <label class="password">
                             <span>패스워드</span>
-                            <input id="password" name="password" value="" type="password" placeholder="Password">
+                            <input id="password" name="password" value="" type="password" placeholder="Password" style="background-color: #FFFFFF;">
                             </label>
-                            <input type="submit" value="로그인" />
+                            <input type="submit" value="로그인" style="background-color: #FFFFFF;" />
                             <p>
                             <a class="forgot" href="join.do">회원가입</a>
                             <a class="forgot" href="idFind.do">id찻기</a>
