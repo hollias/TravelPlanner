@@ -8,7 +8,7 @@
 <%@include file="../mainHeader.jsp" %>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link href="<%=request.getContextPath() %>/css/demo.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <style type="text/css"> 
 
@@ -17,6 +17,7 @@
 	.recode-wrap{text-align: right; color: #888;}
 	.hit-wrap{color:#888; margin: 10px 0;}
 	.viewForm{margin: 20px 0 0 0;}
+
 </style>
 </head>
 
@@ -40,15 +41,10 @@
 		</div>
 		<form class="viewForm" method="post">
 			<input type="hidden" name="boardid" value="${item.boardid }" />
-			<%
+			<button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+		<%
 			Member mem  = (Member)request.getAttribute("loginUser");
 			Board bd = (Board)request.getAttribute("item");
-			if (mem !=null)
-			if(mem.getMemberid().equals("master")){
-			%><button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
-			<% }else if(mem.getMemberid().equals(bd.getMemberid())){
-			%><button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
-			<%}
 			if (mem !=null)
 			if(mem.getMemberid().equals("master")){
 			%><button type="button" onclick="onDel()" class="btn btn-primary">삭제</button>

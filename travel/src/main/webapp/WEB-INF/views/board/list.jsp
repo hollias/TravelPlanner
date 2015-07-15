@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@include file="../header.jsp"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +8,7 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link href="<%=request.getContextPath() %>/css/demo.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <title>Insert title here</title>
 <style type="text/css">
@@ -26,7 +24,7 @@
 </head>
 <body>
 <div class="container" align="center" style=" width: 1130px">
-	<h2 class="sub-header">자 궁금한게 머야</h2>
+	<h2 class="sub-header">게시판</h2>
 	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>

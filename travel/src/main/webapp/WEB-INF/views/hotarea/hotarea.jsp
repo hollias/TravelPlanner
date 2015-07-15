@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,model.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page contentType="text/html;charset=UTF-8" import="java.util.*,model.*"%>
+<%@include file="../header.jsp"%>
+<%@include file="../mainHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,82 +35,93 @@
 </script>
 </head>
 <body>
-	<table border="1">
-		<tr>
+	<div id="hotmenu" style="margin-left: 74px;">
+		<ul>
+			<li style="margin-left :14px;"><a href="hacontent.do?local=${areaOne.local }&plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}">지역설명</a></li>
+			<li style="margin-left :14px;"><a href="hotrest.do?local=${areaOne.local }&plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}">맛집</a></li>
+			<li style="margin-left :14px;"><a href="hottourist.do?local=${areaOne.local }&plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}">관광지</a></li>
+			<li style="margin-left :14px;"><a href="hotstay.do?local=${areaOne.local }&plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}">숙소</a></li>
+			<li style="margin-left :14px;"><a href="hotmap.do?local=${areaOne.local }&plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}">지도</a></li>
+			<li style="margin-left :14px;"><a href="hotwrite.do">내가스팟등록하기</a></li>
+		</ul>
+	</div>
+	<table style="margin-left: 70px;">
+		<tr style="vertical-align: top;">
 			<td>
-				<table border="1">
-					<tr><td><h2>일정표</h2></td></tr>
-					<tr><td><a href="schedule.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">요약표</a></td></tr>
-					<tr><td><a href="sccal.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">달력</a></td></tr>
-				</table>
+				<form action="#" >
+					<fieldset>
+						<legend>일정표</legend>
+						<div class="elements">
+						<label class="label" for="name"><a href="schedule.do?plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>요약표</a></label>
+						<label class="label" for="name"><a href="sccal.do?plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>달력</a></label>
+						</div>
+					</fieldset>
+				</form>
 			</td>
-			<td rowspan="2" style="width:750px; height:750px">
-				<table border="1">
-					<tr>
-						<td colspan="5">
-							<div id="image_list_1">
-						        <div class="clsBannerScreen">
-						        	<c:forEach var="hotimage" items="${hotimage }" begin="0" end="4">
-						            <div class="images" style="display:block">
-						                <img src="resources/upload/${hotimage.hotimage }" width="650" height="400">
-						            </div>
-						            </c:forEach>
-						     	</div>
-						     </div>
-						</td>
-					</tr>
-					<tr >
-						<td><a href="hacontent.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">지역설명</a></td>
-						<td><a href="hotrest.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">맛집</a></td>
-						<td><a href="hottourist.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">관광지</a></td>
-						<td><a href="hotstay.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">숙소</a></td>
-						<td><a href="hotmap.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">지도</a></td>
-					</tr>
-					<tr>
-						<td align="right" colspan="5"><a href="hotwrite.do">내가스팟등록하기</a></td>
-						
-					</tr>
-					<tr>
-					<%	int a=0;
-						List<Hot> ha = (List<Hot>)request.getAttribute("hotimage");
-						for(int i=0 ; i<ha.size();i++ ){a++;
+			<td rowspan="2">
+					
+	<table style="width: 1092;"> 
+		<tr style="vertical-align: top;">
+			<td colspan="5">
+				<div id="image_list_1">
+		        	<div class="clsBannerScreen" style="width: 860px">
+						<c:forEach var="hotimage" items="${hotimage }" begin="0" end="4">
+							<div class="images" style="display:block">
+							<img src="resources/upload/${hotimage.hotimage }" width="860px" height="600px">
+						</div>
+						</c:forEach>
+					</div>
+				</div>
+			</td>
+		</tr>
+ 		<tr style="vertical-align: top;">
+		<%	int a=0;
+				List<Hot> ha = (List<Hot>)request.getAttribute("hotimage");
+				for(int i=0 ; i<ha.size(); i++ ){a++;
 					%>
-						<td>
-							<table border="1">
-								<tr><td><a href href="#" class="osx">
-								<img src="resources/upload/<%= ha.get(i).getHotimage() %>" width="150" height="150">
-								<input type="hidden" class="hotid" value="<%= ha.get(i).getHotid() %>">
-								</a></td></tr>
-								<tr><td><%=a%>위. <%=ha.get(i).getHotname()%></td></tr>
-							</table>
+						<td class="form">
+							<form action="#">
+								<fieldset style="padding: 0px; ">
+									<legend><a href href="#" class="osx"><%=a%>위<input type="hidden" class="hotid" value="<%= ha.get(i).getHotid() %>"></a></legend>
+									<div class="elements1">
+									<label class="label" for="name"><p><img src="resources/upload/<%= ha.get(i).getHotimage() %>" width="130" height="130"></label>
+									<label class="label" for="name"><p><%=ha.get(i).getHotname()%></label>
+									<label class="label" for="name"><p><%=ha.get(i).getLocal()%></label>
+									</div>
+								</fieldset>
+							</form>
 						</td>
 					<%
-						if((i+1)%5==0){
+						if((i+1)%4==0){
 					%>
 							</tr><tr>
 					<%
 							}
 						}
 					%>
-				</table>
+		</table>
 			</td>
 		</tr>
-		<tr>
+		<tr style="vertical-align: top;">
 			<td>
-				<table border="1">
-					<tr><td><h3>가이드북/지도</h3></td></tr>
- 					<c:forEach var="calendar" items="${calendar }">
-					<tr><td><a href="hotarea.do?local=${calendar.local}&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">${calendar.local}</a></td></tr>
-					</c:forEach>
-				</table>
+				<form action="#" class="calendar_form">
+					<fieldset>
+						<legend>가이드북</legend>
+						<div class="elements1">
+						<c:forEach var="calendar" items="${calendar }">
+						<label class="label" for="name"><a href="hotarea.do?local=${calendar.local}&plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>${calendar.local }</a></label>
+						</c:forEach>
+						</div>
+					</fieldset>
+				</form>
 			</td>
 		</tr>
 	</table>

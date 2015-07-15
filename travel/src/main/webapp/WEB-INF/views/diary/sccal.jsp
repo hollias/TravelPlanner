@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,model.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" import="java.util.*,model.*"%>
+<%@include file="../header.jsp"%>
+<%@include file="../mainHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,30 +45,44 @@
 </script>
 </head>
 <body>
-	<table border="1">
-		<tr>
+	<table style="margin-left: 70px;">
+		<tr style="vertical-align: top;">
 			<td>
-				<table border="1">
-					<tr><td><h2>일정표</h2></td></tr>
-					<tr><td><a href="schedule.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">요약표</a></td></tr>
-					<tr><td><a href="sccal.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">달력</a></td></tr>
-				</table>
+				<form action="#" >
+					<fieldset>
+						<legend>일정표</legend>
+						<div class="elements">
+						<label class="label" for="name"><a href="schedule.do?plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>요약표</a></label>
+						<label class="label" for="name"><a href="sccal.do?plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>달력</a></label>
+						</div>
+					</fieldset>
+				</form>
 			</td>
 			<td rowspan="2">
-				<div id="calendar"></div>
+				
+				<form action="#" style="width: 865px;">
+					<fieldset>
+						<legend>달력</legend>
+						<div id="calendar" ></div>
+					</fieldset>
+				</form>
 			</td>
 		</tr>
-		<tr>
+		<tr style="vertical-align: top;">
 			<td>
-				<table border="1">
-					<tr><td><h3>가이드북/지도</h3></td></tr>
-					<c:forEach var="calendar" items="${calendar }">
-					<tr><td><a href="hotarea.do?local=${calendar.local}&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">${calendar.local}</a></td></tr>
-					</c:forEach>
-				</table>
+				<form action="#" class="calendar_form">
+					<fieldset>
+						<legend>가이드북</legend>
+						<div class="elements1">
+						<c:forEach var="calendar" items="${calendar }">
+						<label class="label" for="name"><a href="hotarea.do?local=${calendar.local}&plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>${calendar.local }</a></label>
+						</c:forEach>
+						</div>
+					</fieldset>
+				</form>
 			</td>
 		</tr>
 	</table>

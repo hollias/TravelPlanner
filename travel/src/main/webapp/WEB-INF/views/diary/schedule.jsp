@@ -33,8 +33,8 @@
 
 </head>
 <body>
-	<table border="1">
-		<tr>
+	<table style="margin-left: 70px;">
+		<tr style="vertical-align: top;">
 			<td>
 				<form action="#" >
 					<fieldset>
@@ -49,25 +49,25 @@
 				</form>
 			</td>
 			<td rowspan="2">
-			<table border="1">
-				<tr>
-					<th colspan="5"><h2>일정표</h2></th>
+			<table style="background-color: #EBF4FB; top: auto;">
+				<tr  style="vertical-align: top;">
+					<th colspan="5"><legend>요약표</legend></th>
 				</tr>
 				<tr>
-					<td>일차</td>
-					<td>지역</td>
-					<td>일정</td>
-					<td>대표가격</td>
-					<td>상세보기</td>
+					<td><label class="label" for="name">일차</label></td>
+					<td><label class="label" for="name">지역</label></td>
+					<td><label class="label" for="name">일정</label></td>
+					<td><label class="label" for="name">대표가격</label></td>
+					<td><label class="label" for="name">상세보기</label></td>
 				</tr>
 				<c:forEach var="schot" items="${schot }">
 					<tr>
-						<td>${schot.dday }</td>
-						<td>${schot.local }</td>
-						<td>${schot.hotname }</td>
-						<td>${schot.hotprice }</td>
-						<td>
-		   				 <a href="#" class="osx">클릭
+						<td style="border-bottom:1px solid #B7DDF2;"><label class="label" for="name">${schot.dday }</label></td>
+						<td style="border-bottom:1px solid #B7DDF2;"><label class="label" for="name">${schot.local }</label></td>
+						<td style="border-bottom:1px solid #B7DDF2;"><label class="label" for="name">${schot.hotname }</label></td>
+						<td style="border-bottom:1px solid #B7DDF2;"><label class="label" for="name">${schot.hotprice }</label></td>
+						<td style="border-bottom:1px solid #B7DDF2;">
+		   				 <a href="#" class="osx" style="text-decoration: none">클릭
 						<input type="hidden" class="local" value="${schot.local }">
 						<input type="hidden" class="hotname" value="${schot.hotname }">		
 						</a></td>
@@ -75,15 +75,8 @@
 				</c:forEach>	
 			</table>
 		</tr>
-		<tr>
+		<tr style="vertical-align: top;">
 			<td>
-<%-- 				<table border="1">
-					<tr><td><h3>가이드북/지도</h3></td></tr>
-					<c:forEach var="calendar" items="${calendar }">
-					<tr><td><a href="hotarea.do?local=${calendar.local}&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">${calendar.local }</a></td></tr>
-					</c:forEach>
-				</table> --%>
 				<form action="#" class="calendar_form">
 					<fieldset>
 						<legend>가이드북</legend>
