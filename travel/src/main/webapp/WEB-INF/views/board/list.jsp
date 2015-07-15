@@ -20,6 +20,9 @@
 	tbody>tr:HOVER{color:#da8c92;cursor: pointer;}
 	.menu-wrap{text-align: right;}
 	.form-wrap{text-align: center;}
+	p{
+	
+	}
 </style>
 </head>
 <body>
