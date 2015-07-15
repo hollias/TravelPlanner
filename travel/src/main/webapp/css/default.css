@@ -27,6 +27,9 @@ background:#EBF4FB none repeat scroll 0 0;//Gives the form a nice blue backgroun
 border:2px solid #B7DDF2;//with a blue border
 width: 500px;//of width 500 pixel
 }
+.form{
+	width: 212px;
+}
 legend {
 color: #fff;
 background: #80D3E2;

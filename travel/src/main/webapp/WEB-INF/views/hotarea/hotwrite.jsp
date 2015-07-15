@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@include file="../header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/se/js/HuskyEZCreator.js" charset="utf-8" ></script>
 <script type="text/javascript" src="resources/se/js/jindo.min.js" charset="utf-8" ></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link href="<%=request.getContextPath() %>/css/demo.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <style type="text/css">
@@ -17,18 +16,23 @@
 </style>
 </head>
 <body>
-<table border="1">
-	<tr>
-		<td>
+<table>
+	<tr style="vertical-align: top;">
+		<td style="padding-left: 55px; width: 620px;">
 			<script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=f8806ad6dbda4e31e95fb79cf04dbe14"></script>
-			<div id = "testMap" style="border:1px solid #000; width:700px; height:400px; margin:20px; display:block;"></div>
+
+				<fieldset style="margin-left: 17px; width: 500px">
+					<legend>지도</legend>
+					<div id = "testMap" style="border:1px solid #000; width:700px; height:400px; margin:20px; display:block;"></div>
+				</fieldset>
+
 			<script type="text/javascript">
 				var oPoint = new nhn.api.map.LatLng(37.5010226, 127.0396037);
 				var oPoint2 = new nhn.api.map.LatLng(37.5055226, 127.0452037);
 				nhn.api.map.setDefaultPoint('LatLng');
 				oMap = new nhn.api.map.Map('testMap', {
 							center : oPoint,
-							level : 10, // - 초기 줌 레벨은 10이다.
+							level : 2, // - 초기 줌 레벨은 10이다.
 							enableWheelZoom : true,
 							enableDragPan : true,
 							enableDblClickZoom : false,
@@ -62,7 +66,7 @@
 				var testDupSpriteIcon_first = new nhn.api.map.SpriteIcon(testdefaultSpriteIcon.url, testdefaultSpriteIcon.size, testdefaultSpriteIcon.spriteSize, 0, testdefaultSpriteIcon.offset); 
 	
 				var DraggableMarker = new nhn.api.map.DraggableMarker(testDupSpriteIcon_first , {	
-					title : 'first row image',
+					title : '드레그후 선택하세요',
 					point : oPoint,
 					zIndex : 1,
 					smallSrc :  testDupSpriteIcon_first});		
@@ -84,8 +88,7 @@
 						}
 						mapInfoTestWindow.setContent('<DIV style="border-top:1px solid; border-bottom:2px groove black; border-left:1px solid; border-right:2px groove black;margin-bottom:1px;color:black;background-color:white; width:auto; height:auto;">'+
 								'<span style="color: #000000 !important;display: inline-block;font-size: 12px !important;font-weight: bold !important;letter-spacing: -1px !important;white-space: nowrap !important; padding: 2px 5px 2px 2px !important">' + 
-								'Hello World <br /> ' + oTarget.getPoint()
-								+'<span></div>');
+								'좌표를 선택하세요 <br/><span></div>');
 						mapInfoTestWindow.setPoint(oTarget.getPoint());
 						mapInfoTestWindow.setVisible(true);
 						mapInfoTestWindow.autoPosition();
@@ -127,8 +130,7 @@
 						// - infoWindow 의 내용은 사용자가 임의로 지정할 수 있습니다. 단 HTML 로 지정을 하셔야 합니다. 
 						mapInfoTestWindow.setContent('<DIV style="border-top:1px solid; border-bottom:2px groove black; border-left:1px solid; border-right:2px groove black;margin-bottom:1px;color:black;background-color:white; width:auto; height:auto;">'+
 								'<span style="color: #000000 !important;display: inline-block;font-size: 12px !important;font-weight: bold !important;letter-spacing: -1px !important;white-space: nowrap !important; padding: 2px 5px 2px 2px !important">' + 
-								'Hello World <br /> ' + oEvent.newPoint
-								+'<input id="btn" type="button" value="추가" onclick="appendItem(this)"><input type="hidden" id="mapxx" value="'+oEvent.newPoint.getLng()+'"><input type="hidden" id="mapyy" value="'+oEvent.newPoint.getLat()+'"><span></div>');
+								'<input id="btn" type="button" value="선택" onclick="appendItem(this)"><input type="hidden" id="mapxx" value="'+oEvent.newPoint.getLng()+'"><input type="hidden" id="mapyy" value="'+oEvent.newPoint.getLat()+'"><span></div>');
 						mapInfoTestWindow.setPoint(oEvent.newPoint);
 						mapInfoTestWindow.setVisible(true);
 						mapInfoTestWindow.autoPosition();
@@ -137,65 +139,41 @@
 	</script>
 </td>
 <td>
-	<form id="hotWriteForm" method="post" name="frm" >
-	<table border="1">
-		<tr>
-			<td>
-				제목 :
-			</td>
-			<td>
-				<input type="text" id="title" name="hotname" value="" maxlength="100" style="width: 100%;" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				좌표 : 
-			</td>
-			<td>
-				<input type="text" id="x" name="x" readonly="readonly">
-				<input type="text" id="y" name="y" readonly="readonly">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				대표가격 : 
-			</td>
-			<td>
-				<input type="number" name="hotprice" required="required" id="hotprice">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				종류 : 
-			</td>
-			<td>
-				<select name="hotkind" required="required">
+	<form id="hotWriteForm" method="post" name="frm"">
+		<fieldset style="margin-left: 17px; width: 536px; height: 483px;">
+			<legend>정보입력</legend>
+			<p>
+			<label class="smart" for="name">제목 :</label>
+			<input type="text" id="title" name="hotname" value="" maxlength="100" />
+			<p>
+			<label class="smart" for="name">좌표 :</label>
+			<input type="text" id="x" name="x" readonly="readonly">
+			<input type="text" id="y" name="y" readonly="readonly">
+			<p>
+			<label class="smart" for="name">대표가격 :</label>
+			<input type="number" name="hotprice" required="required" id="hotprice">
+			<p>
+			<label class="smart" for="name">종류 :</label>
+			<select name="hotkind" required="required">
 					<option value="1">맛집</option>
 					<option value="2">관광지</option>
 					<option value="3">숙박</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				지역 : 
-			</td>
-			<td>
-				<select name="local" required="required">
+			</select>
+			<p>
+			<label class="smart" for="name">지역 :</label>
+			<select name="local" required="required">
 					<c:forEach var="areaname" items="${areaname }">
 						<option value="${areaname.local }">${areaname.local }</option>
 					</c:forEach>
-				</select>
-
-			</td>
-		</tr>
-	</table>
-
+			</select>	
+		</fieldset>
 </td>
 </tr>
 <tr>
-	<td colspan="2">
-		<div class="container">
+	<td colspan="2" style="padding-left: 57px">
+		<form action="#" >
+				<fieldset style="margin-left: 17px; ">
+				<div class="container" style="width: 1060px;">
 				<div class="contentDiv">
 				 	<textarea id="txtContent" name="hotcontent" rows="30" style="width:100%;"></textarea>
 				</div>
@@ -208,7 +186,9 @@
 					</c:if>
 					<button type="button" class="btn btn-primary" onclick="history.go(-1);"> 취소</button>
 				</div>
-		</div>
+				</div>
+				</fieldset>
+		</form>
 	</td>
 </tr>	
 </form>

@@ -20,23 +20,23 @@
 	select local , hotname , hotprice, hotcontent,hotimage from hot where local=#{local} and hotname=#{hotname}
   </select>
    <select id="hotrest" resultType="Hot" parameterType="java.util.Map">
-	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=1 and local=#{local}) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid, local,hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,local,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=1 and local=#{local}) where rank <=20 ]]>
   </select>
    <select id="hottourist" resultType="Hot" parameterType="java.util.Map">
-	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=2 and local=#{local}) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid, local,hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,local,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=2 and local=#{local}) where rank <=20 ]]>
   </select>
    <select id="hotstay" resultType="Hot" parameterType="java.util.Map">
-	<![CDATA[ select hotimage, hotid, hotname,readcount ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=3 and local=#{local}) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid,local, hotname,readcount ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,local,readcount,row_number() over(order by readcount desc)rank from hot where hotkind=3 and local=#{local}) where rank <=20 ]]>
   </select>
   <select id="hotajax" resultType="Hot" parameterType="java.util.Map">
 	select * from hot where hotid=#{hotid}
   </select>
   <select id="hotimage" resultType="Hot" parameterType="java.util.Map">
-	<![CDATA[ select hotimage, hotid, hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(
-  		select hotimage,hotid,hotname,readcount,x,y,row_number() over(order by readcount desc)rank from hot where local=#{local}) where rank <=20 ]]>
+	<![CDATA[ select hotimage, hotid, local,hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(
+  		select hotimage,hotid,hotname,local,readcount,x,y,row_number() over(order by readcount desc)rank from hot where local=#{local}) where rank <=20 ]]>
   </select>
   <insert id="inserthot" parameterType="hot" useGeneratedKeys="true" keyProperty="hotid">
 	<selectKey keyProperty="hotid" resultType="Integer"  order="BEFORE">

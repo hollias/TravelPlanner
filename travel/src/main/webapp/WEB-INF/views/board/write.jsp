@@ -10,7 +10,7 @@
 
 <script type="text/javascript" src="resources/se/js/HuskyEZCreator.js" charset="utf-8" ></script>
 <script type="text/javascript" src="resources/se/js/jindo.min.js" charset="utf-8" ></script>
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link href="<%=request.getContextPath() %>/css/demo.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 <style type="text/css">
 #boardWriteForm{margin: 30px 0;}
