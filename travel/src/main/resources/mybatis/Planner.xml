@@ -7,7 +7,7 @@
     <result property="plannerid" column="plannerid"/>
     <result property="plannername" column="plannername"/>
     <result property="memberid" column="memberid"/>
-    <result property="ongoing" column="ongoing"/>	
+    <result property="ongoing" column="ongoing"/>
   </resultMap>
   
     <insert id="createPlanner" parameterType="Planner">
@@ -43,5 +43,7 @@
    <update id="updatePlannerName" parameterType="java.util.Map">
       <![CDATA[ UPDATE planner SET plannername=#{plannername} WHERE plannerid=#{plannerid}]]>
    </update>   
-  
+  	<update id="plongo" parameterType="java.util.Map" >
+  	<![CDATA[ UPDATE planner SET ongoing=1 WHERE plannerid=#{plannerid} and memberid=#{memberid}]]>  
+  	</update>
 </mapper>

@@ -66,4 +66,11 @@ public class PlannerDaoImpl implements PlannerDao{
 	public List<Planner> mainMap() {
 	      return session.selectList("mainList");
 	}
+	// 현재 플레너 ->지난플레너로 변경
+	public int plongo(String plannerid, String memberid) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("plannerid", plannerid);
+		map.put("memberid", memberid);
+		return session.update("plongo", map); 
+	}
 }

@@ -24,6 +24,7 @@ public interface RailnoService {
 	Planner plannerOne(String memberid);
 	List<Planner> list(String memberid);
 	Planner plannerName(String memberid, String plannername);
+	public int 	plongo(String plannerid,String memberid); 	// 현재 플레너 ->지난플레너로 변경
 	
 	//Member
 	public Member getMemberBymIdAndPassword(Member mem);	

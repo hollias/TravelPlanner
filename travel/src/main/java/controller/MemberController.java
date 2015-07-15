@@ -1,4 +1,6 @@
 package controller;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import model.PagingBean;
 import model.Member;
+import model.Planner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import service.MapService;
 import service.RailnoService;
 import service.ShopService;
 import utils.WebConstants;
@@ -23,6 +27,8 @@ public class MemberController {
 	private ShopService shopService;
 	@Autowired
 	private RailnoService rs;
+	@Autowired
+	private MapService ms;
 	
 	@RequestMapping(value="user") // 중복체크용
 	public String user(HttpServletRequest request, Model model){
@@ -74,21 +80,39 @@ public class MemberController {
 	public String login(Member mem, Model model, HttpSession session, HttpServletRequest request){
 		Member member = shopService.getMemberBymIdAndPassword(mem);
 		Member loginUser = member;
+		Planner ps = null;
+		Date da = null;
+		GregorianCalendar gc =  new GregorianCalendar();
+		Date date = gc.getTime();
+		System.out.println("date="+date);
 		if(member == null){
 			model.addAttribute("message", "아이디가 없습니다.");
 			return "joinus/login";
-
 		}else if(member.getMemberid().matches("master")){
 			session.setAttribute(WebConstants.USER_KEY, loginUser);
 			model.addAttribute("loginUser", loginUser);
 			model.addAttribute("member", member);
 			return "admin/adminMain";
-
+			
 		}else{
 			session.setAttribute(WebConstants.USER_KEY, loginUser);
-			model.addAttribute("loginUser", loginUser);
-			model.addAttribute("member", member);
+			ps = rs.plannerOne(loginUser.getMemberid());
+			System.out.println(1);
+			if(ps==null){
+				model.addAttribute("loginUser", loginUser);
+				model.addAttribute("member", member);
 			return "main";
+			}else{
+				System.out.println(2);
+				da = ms.da(ps.getPlannerid());
+				if(date.after(da)){
+					System.out.println("3>"+"plannerid="+ps.getPlannerid()+">memberid="+loginUser.getMemberid());
+					 rs.plongo(""+ps.getPlannerid(), loginUser.getMemberid());
+				}
+				model.addAttribute("loginUser", loginUser);
+				model.addAttribute("member", member);
+			return "main";
+			}
 		}
 	}	
 	@RequestMapping(value="mypage")//내정보 페이지
