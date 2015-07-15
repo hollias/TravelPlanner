@@ -148,12 +148,12 @@ public class MapController {
       hot.setX(x1);
       int hotId = ms.findHotId(hot);
       schedule.setHotid(hotId);
-
+     // System.out.println("pn="+plannerName1+"dday="+dday);
       int result = ms.insertSchedule(schedule);
-      System.out.println(1);
+      
       List<ScheduleHot> list = ms.selectDdaySchedule(dday, plannerName,
             loginUser.getMemberid());
-      System.out.println(list.get(0).getHotname());
+      
       model.addAttribute("list", list);
 
       return "planner/scheduleLine";
