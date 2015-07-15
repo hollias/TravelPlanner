@@ -16,7 +16,7 @@
   </resultMap>  
 	
 	<select id="selectPlannerSArea" parameterType="int" resultMap="PlannerSAreaResult">
-		<![CDATA[ select * from planners p,area a where plannerid = #{ongoingPlannerId} and p.local = a.local order by lineorder]]>
+		<![CDATA[ select * from planners p,area a where plannerid = #{ongoingPlannerId} and p.local = a.local by lineorder]]>
 	</select>
 	
 </mapper>

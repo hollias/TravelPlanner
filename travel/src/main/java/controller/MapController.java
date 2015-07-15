@@ -374,9 +374,11 @@ public class MapController {
       model.addAttribute("y", area.getY());
 
       List<Hot> al = ms.getHot(local);
-
+      System.out.println("local="+local);
+      model.addAttribute("local",local);
+      model.addAttribute("dday",1);
       model.addAttribute("hot", al);
-      model.addAttribute("plannerId", planner.getPlannerid());
+      model.addAttribute("plannerId", plannerId);
       model.addAttribute("day", planners.getDay());
 
       return "planner/detailPlanner";
