@@ -97,16 +97,13 @@ public class MemberController {
 		}else{
 			session.setAttribute(WebConstants.USER_KEY, loginUser);
 			ps = rs.plannerOne(loginUser.getMemberid());
-			System.out.println(1);
 			if(ps==null){
 				model.addAttribute("loginUser", loginUser);
 				model.addAttribute("member", member);
 			return "main";
 			}else{
-				System.out.println(2);
 				da = ms.da(ps.getPlannerid());
 				if(date.after(da)){
-					System.out.println("3>"+"plannerid="+ps.getPlannerid()+">memberid="+loginUser.getMemberid());
 					 rs.plongo(""+ps.getPlannerid(), loginUser.getMemberid());
 				}
 				model.addAttribute("loginUser", loginUser);
