@@ -29,7 +29,7 @@
 	
 	 <select id="calendar" resultType="PlannerS" parameterType="java.util.Map">
 	select to_char(regdate,'dd') dd,to_char(regdate,'mm') mm ,substr(day,1,1) day , local 
-		from planners where plannerid=#{plannerid}
+		from planners where plannerid=#{plannerid} order by lineorder
   </select>
   
   	<select id="plannerSCount" resultType="int" parameterType="int">
