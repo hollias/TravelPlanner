@@ -16,8 +16,8 @@
 	<table id="stable" border="1">	
 	<tr>
 		<td><img alt="" src="images/${list.hotimage }" width="100"></td><td>${list.hotname }</td>
-		<td><input type="hidden" id="local" value="${list.scheduleid }">${list.hotcontent }</td>		
-		<td><input type="button" value="취소" onclick="cancel(this)"></td></tr>	
+		<td><input type="hidden" id="local" value="${list.scheduleid }">
+		<input type="button" value="취소" onclick="cancel(this)"></td></tr>	
 	</table>
 	</c:forEach>
 </body>
