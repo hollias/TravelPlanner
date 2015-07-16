@@ -1,12 +1,12 @@
 .login-window { display:inline-block;
-	font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
-	 text-decoration:none; } 
+   font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
+    text-decoration:none; } 
 .forgot { display:inline-block;
-	font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
-	 text-decoration:none;  } 
+   font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
+    text-decoration:none;  } 
 #h { display:inline-block;
-	font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
-	 text-decoration:none;color: white; } 
+   font:bold 13px/1.3em '맑은고딕',Malgun Gothic;
+    text-decoration:none;color: white; } 
 
 body{font-size:15px; width:1250px; margin:auto; padding-top: 20px; height: 890px;}
 .iframe{width:220px; height: 270px}
@@ -28,7 +28,7 @@ border:2px solid #B7DDF2;//with a blue border
 width: 500px;//of width 500 pixel
 }
 .form{
-	width: 212px;
+   width: 212px;
 }
 legend {
 color: #fff;
@@ -48,14 +48,18 @@ padding-bottom:10px;
 }
 .calendar{width: 1070px; height: 860px; }
 .schedule{
-	text-decoration: none; color: white;
+   text-decoration: none; color: white;
 }
 .home{
-	text-decoration: none;
-	font-size: 15px;
+   text-decoration: none;
+   font-size: 15px;
 }
 ul{
-	list-style: none;
+   list-style: none;
+}
+.ongoing{
+   font-size: 11px;
+   color: #666666;
 }
 /* tab css  */
 @import url(http://fonts.googleapis.com/css?family=Raleway);
@@ -84,7 +88,7 @@ ul{
   height: 0;
 }
 #cssmenu {
-  text-align: center;	
+  text-align: center;   
   width: 1100px;
   border-bottom: 3px solid #007DD5;  
   line-height: 1;

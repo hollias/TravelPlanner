@@ -16,21 +16,21 @@
 </head>
 <body>
 <form action="MapSubmit.do" method="post" >
-	<fieldset>
-		<legend>입력창</legend>
-		<div class="elements">
-		<label class="label" for="name"><p>플래너 이름</label>
-		<input type="text" name="plannerTitle">
-		<label class="label" for="name"><p>여행출발일자</label>
-		<input type="date" name="startDate">
-		<div id="msg"></div>
-		<input type="submit" value="확인">
-		</div>
-	</fieldset>
+   <fieldset>
+      <legend>입력창</legend>
+      <div class="elements">
+      <label class="label" for="name"><p>플래너 이름</label>
+      <input type="text" name="plannerTitle">
+      <label class="label" for="name"><p>여행출발일자</label>
+      <input type="date" name="startDate">
+      <div id="msg"></div>
+      <input type="submit" value="확인">
+      </div>
+   </fieldset>
 <!-- 
 <table><tr style="vertical-align: top;"><td>
-	<div>플래너 이름<input type="text" name="plannerTitle"></div>
-	<div>여행출발일자<input type="date" name="startDate"></div>
+   <div>플래너 이름<input type="text" name="plannerTitle"></div>
+   <div>여행출발일자<input type="date" name="startDate"></div>
     <div id="msg"></div>
     <input type="submit" value="확인">
 </td><td >     
@@ -179,10 +179,10 @@
          
      });
      function appendItem(item){
-    	 
-    	 //input에 저장된 x,y좌표를 opoint배열에 저장하는것
-    	 var mapx = $(item).parent().find("#mapx").val();
-    	 var mapy = $(item).parent().find("#mapy").val();
+        
+        //input에 저장된 x,y좌표를 opoint배열에 저장하는것
+        var mapx = $(item).parent().find("#mapx").val();
+        var mapy = $(item).parent().find("#mapy").val();
         var opoint;        
         opoint = new nhn.api.map.LatLng(mapy,mapx);
         
@@ -206,14 +206,14 @@
      
      //스케쥴S를 넣는것을 고민해봐야함.
      function cancel(a){
-    	 
-    	 var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();    	 
-    	 $(a).parent().parent().parent().parent().remove();
-    	 var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
+        
+        var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();        
+        $(a).parent().parent().parent().parent().remove();
+        var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
          aPoints.splice(aa-1,1); 
          oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
-    	 var sendData = 'index='+aa;    	 
-    	 $.ajaxSetup({
+        var sendData = 'index='+aa;        
+        $.ajaxSetup({
              type:"POST",
              url:"deletePlannerS.do",
              dataType:"text",
@@ -222,7 +222,7 @@
           $.ajax({data:sendData});
           
           return false;
-    	  
+         
      }
      
      </script>

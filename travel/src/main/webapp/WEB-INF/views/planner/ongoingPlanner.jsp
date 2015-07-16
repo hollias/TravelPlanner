@@ -22,47 +22,66 @@
 </head>
 <body>
 <form action="MapSubmit.do" method="post">
-<table><tr style="vertical-align: top;"><td>
-	<div>입력할 플래너<input type="text" name="plannerTitle" value="${plannername }"></div>
-	<div>여행출발일자<input type="date" name="startdate" value="${startdate }" />
-    
-    <div id="msg">
-    <c:forEach var="item" items="${list }">
-    	
-    	<table border="1">
-    		<tr><td><div id="itemlineorder">${item.lineorder }</div></td></tr>
-			<tr><td><input type="hidden" id="local" value="${item.local }">${item.local }</td>
-			<td> <select name="day">
-			<c:forEach begin="1" end="5" var="i">
-				<c:if test="${item.day==i}">
-					<option value="${i }" selected="selected">${i }박</option>					
-				</c:if>
-				<c:if test="${item.day!=i}">
-					<option value="${i }">${i }박</option>					
-				</c:if>
-				
-			</c:forEach>			
-			</select></td>
-			<td><input type="button" value="취소" onclick="cancel(this)"></td></tr>
-			<tr><td colspan="2">기차시간</td><td><input type="button" value="상세보기" onclick="detail(this)"></td></tr>
-			<tr><td colspan="2">다음추천여행지</td><td></td></tr>
-		</table>
-		
-    </c:forEach>
-    </div>
-    <input type="submit" value="확인">
-</td><td >     
-<div id="map" style="border:1px solid #000;" ></div>
+      <table border="1">
+         <tr style="vertical-align: top;">
+            <td>
+               <table>
+                  <tr>
+                     
+                     <td>
+                        <fieldset>
+                           <legend>입력창</legend><p>
+                           <label class="label" for="name">플래너 이름</label>
+                           <input type="text" name="plannerTitle" value="${plannername }"><p>
+                           <label class="label" for="name">여행출발일자</label>
+                           <input type="date" name="startdate" value="${startdate }" />
+                        </fieldset>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td colspan="2">
+                     <div id="msg">
+                     <c:forEach var="item" items="${list }">
+                        <fieldset>
+                        <legend>${item.local }</legend>
+                         <table>
+                        <tr><td><input type="hidden" id="local" value="${item.local }" class="ongoing">
+                              <label class="ongoing" for="name">${item.local }</label></td>
+                        <td><select name="day" class="ongoing">
+                        <c:forEach begin="1" end="5" var="i">
+                        <c:if test="${item.day==i}">
+                           <option value="${i }" selected="selected">${i }박</option>               
+                        </c:if>
+                        <c:if test="${item.day!=i}">
+                           <option value="${i }">${i }박</option>               
+                        </c:if>
+                        </c:forEach>         
+                        </select></td>
+                        <td rowspan="2"><input type="button" value="취소" onclick="cancel(this)" ></td></tr>
+                        <tr><td class="ongoing">다음추천여행지</td><td class="ongoing">여행추천지</td></tr>
+                        </table>
+                        </fieldset>
+                         </c:forEach>
+                      </div>
+                       <input type="submit" value="확인">
+                       </td>
+                  </tr>
+               </table>
+               
+            </td>
+            <td rowspan="3"><div id="map" style="border:1px solid #000;" ></div></td>
+         </tr>
 
+      </table>
 <script type="text/javascript">   
 
     
-	var aPoints;
+   var aPoints;
      var oPoint = new nhn.api.map.LatLng(36.4851766,127.9984218);   // 초기 좌표
      <%
      List<Area> al = (List)request.getAttribute("area");
      for(int i = 0 ; i<al.size() ; i++){
-    	 
+        
         %>
         var MapY = <%=al.get(i).getY()%>;
           var MapX = <%=al.get(i).getX()%>;
@@ -161,7 +180,7 @@
     });
     
    
- 	
+    
  
      oMap.attach('click', function(oCustomEvent) {
         var oPoint = oCustomEvent.point;
@@ -201,27 +220,27 @@
      
        
   
-	<%
-  	List<PlannerSArea> list = (List)request.getAttribute("list");
-  	for(int i = 0; i<list.size(); i++){
-  		%>
-  		var mapx =<%=list.get(i).getX() %>
-   	 	var mapy =<%=list.get(i).getY() %>   	 	
-   	 	var opoint1;        
-     	opoint1 = new nhn.api.map.LatLng(mapy,mapx);
-  		
-  		aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
- 	    aPoints.push(opoint1); // - 추가하고자 하는 점을 추가하여 배열로 저장함.
- 	    oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
-  		<%		
-  	}
-  	%>	
-  	
+   <%
+     List<PlannerSArea> list = (List)request.getAttribute("list");
+     for(int i = 0; i<list.size(); i++){
+        %>
+        var mapx =<%=list.get(i).getX() %>
+          var mapy =<%=list.get(i).getY() %>          
+          var opoint1;        
+        opoint1 = new nhn.api.map.LatLng(mapy,mapx);
+        
+        aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
+        aPoints.push(opoint1); // - 추가하고자 하는 점을 추가하여 배열로 저장함.
+        oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
+        <%      
+     }
+     %>   
+     
      function appendItem(item){
-    	 
-    	 //input에 저장된 x,y좌표를 opoint배열에 저장하는것
-    	 var mapx = $(item).parent().find("#mapx").val();
-    	 var mapy = $(item).parent().find("#mapy").val();
+        
+        //input에 저장된 x,y좌표를 opoint배열에 저장하는것
+        var mapx = $(item).parent().find("#mapx").val();
+        var mapy = $(item).parent().find("#mapy").val();
         var opoint;        
         opoint = new nhn.api.map.LatLng(mapy,mapx);
         
@@ -242,16 +261,16 @@
       $.ajax({data:sendData});
       return false;      
    }
- 	//스케쥴S를 넣는것을 고민해봐야함.
+    //스케쥴S를 넣는것을 고민해봐야함.
     function cancel(a){
-    	 
-    	 var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();    	 
-    	 $(a).parent().parent().parent().parent().remove();
-    	 var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
+        
+        var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();        
+        $(a).parent().parent().parent().parent().remove();
+        var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
          aPoints.splice(aa-1,1); 
          oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
-    	 var sendData = 'index='+aa;    	 
-    	 $.ajaxSetup({
+        var sendData = 'index='+aa;        
+        $.ajaxSetup({
              type:"POST",
              url:"deletePlannerS.do",
              dataType:"text",
@@ -260,14 +279,14 @@
           $.ajax({data:sendData});
           
           return false;
-    	  
+         
      }
- 	
- 	
+    
+    
      </script>
       
-</td></tr></table>      	
-	
+</td></tr></table>         
+   
 </form>
 </body>
 </html>
