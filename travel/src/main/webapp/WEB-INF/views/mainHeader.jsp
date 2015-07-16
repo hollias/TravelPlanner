@@ -70,16 +70,16 @@ $(document).ready(function() {
                             <fieldset class="textbox" style="background-color: #E5EDF4;">
                            <label class="memberid">
                             <span>아이디</span>
-                            <input id="memberid" name="memberid" value="" type="text" autocomplete="on" placeholder="Id" style="background-color: #FFFFFF;">
+                            <input id="memberid" name="memberid" value="" type="text" autocomplete="on" style="background-color: #FFFFFF;color: black;">
                             </label>
                             <label class="password">
                             <span>패스워드</span>
-                            <input id="password" name="password" value="" type="password" placeholder="Password" style="background-color: #FFFFFF;">
+                            <input id="password" name="password" value="" type="password" style="background-color: #FFFFFF; color: black;">
                             </label>
-                            <input type="submit" value="로그인" style="background-color: #FFFFFF;" />
+                            <input type="submit" value="로그인"  />
                             <p>
-                            <a class="forgot" href="join.do">회원가입</a>
-                            <a class="forgot" href="idFind.do">id찻기</a>
+                            <a class="ongoing" href="join.do" style="text-decoration:none">회원가입</a><br>
+                            <a class="ongoing" href="idFind.do" style="text-decoration:none">아이디/비밀번호 찾기</a>
                             </p>
                             </fieldset>
                       </form>

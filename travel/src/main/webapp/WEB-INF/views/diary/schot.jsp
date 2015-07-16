@@ -9,7 +9,7 @@
 <body>
 	<div id="osx-modal-title">${hotone.hotname }</div>
 	<div class="close">
-		<a href="#" class="simplemodal-close">x</a>
+		<a href="hotupdate.do?hotid=${hotone.hotid }">크게보기</a>
 	</div>
 	<div id="osx-modal-data">
 		<h2>이름 : ${hotone.hotname }</h2>

@@ -68,6 +68,11 @@ ul{
 .image:HOVER {
 	cursor:pointer;
 }
+#osx-modal-data > p{
+	border-bottom:none;
+	margin-bottom:20px;
+	padding-bottom:10px;
+}
 /* tab css  */
 @import url(http://fonts.googleapis.com/css?family=Raleway);
 #cssmenu,

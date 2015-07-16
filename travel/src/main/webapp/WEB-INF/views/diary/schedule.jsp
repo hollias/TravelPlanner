@@ -92,7 +92,7 @@
 		</tr>
 	</table>
 	 <div id="osx-modal-content" class="msg">
-	 	<div  id="osx-modal-title" ></div>
+	 	<div id="osx-modal-title" ></div>
 	 	<div class="close">
 			<a href="#" class="simplemodal-close">x</a>
 		</div>

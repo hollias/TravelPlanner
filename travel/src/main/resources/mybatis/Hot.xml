@@ -17,7 +17,7 @@
 	<result property="memberId" column="memberId"/>
   </resultMap>
   <select id="hotone" resultType="Hot" parameterType="java.util.Map">
-	select local , hotname , hotprice, hotcontent,hotimage from hot where local=#{local} and hotname=#{hotname}
+	select local , hotname , hotprice, hotcontent,hotimage,hotid from hot where local=#{local} and hotname=#{hotname}
   </select>
    <select id="hotrest" resultType="Hot" parameterType="java.util.Map">
 	<![CDATA[ select hotimage, hotid, local,hotname,readcount ,row_number() over(order by readcount desc)rank from(

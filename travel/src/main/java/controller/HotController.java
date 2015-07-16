@@ -180,7 +180,11 @@ public class HotController {
 		return "redirect:hotmain.do";
 	}
 	@RequestMapping(value = "hotmain")
-	public String hotmain(Model model, Hot hot){
+	public String hotmain(Model model, Hot hot,HttpSession session){
+		Member loginUser = (Member)session.getAttribute(WebConstants.USER_KEY);
+		if(loginUser != null){
+			model.addAttribute("loginUser", loginUser);
+		}
 		List<Hot> hotlist = rs.hotlist(hot);
 		model.addAttribute("hotlist",hotlist);
 		return "hot/hotmain";
