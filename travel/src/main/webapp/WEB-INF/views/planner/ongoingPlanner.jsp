@@ -59,7 +59,7 @@
                         </c:forEach>         
                         </select></td>
                         <td rowspan="2"><input type="button" value="취소" onclick="cancel(this)" ></td></tr>
-                        <tr><td class="ongoing">다음추천여행지 </td><td class="ongoing">${nextArea }</td></tr>
+                        <tr><td class="ongoing">다음추천여행지 </td><td class="ongoing">${item.nextArea }</td></tr>
                         </table>
                         </fieldset>
                          </c:forEach>

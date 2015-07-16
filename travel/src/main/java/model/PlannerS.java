@@ -12,7 +12,15 @@ public class PlannerS {
 	private String dd;
 	private String mm;
 	private Date da;
+	private String nextArea;
 	
+	
+	public String getNextArea() {
+		return nextArea;
+	}
+	public void setNextArea(String nextArea) {
+		this.nextArea = nextArea;
+	}
 	public Date getDa() {
 		return da;
 	}

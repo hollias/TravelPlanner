@@ -99,6 +99,19 @@ public class MapController {
             List<PlannerSArea> list = ms.selectPlannerSArea(ongoingPlannerId);
             String startdate = ms.findPlannerStartdate(ongoingPlannerId);
 
+            //추천 다음 라인 검색	  
+            for(int i=0;i<list.size();i++){
+          	  Line line = ms.findNextLocal(list.get(i).getLocal());
+          	  
+          	  if(line==null){
+          		  list.get(i).setNextArea("");    		  
+          	  }
+          	  else
+          		  list.get(i).setNextArea(line.getEndpoint());
+          	  
+          	  
+            }	  
+            
             model.addAttribute("list", list);
             model.addAttribute("plannername", plannername);
             model.addAttribute("startdate", startdate);
@@ -122,13 +135,7 @@ public class MapController {
 
    @RequestMapping(value = "line")
    public String line(String local, String plannerId, Model model) {
-	   //추천 다음 라인 검색
-	  Line line = ms.findNextLocal(local);
-	  String nextArea;
-	  if(line==null)
-		  nextArea = "";
-	  else
-		  nextArea = line.getEndpoint();
+	   
 	  
       int pid = Integer.parseInt(plannerId);
       int plannerSCount = ms.plannerSCount(pid);
@@ -137,8 +144,23 @@ public class MapController {
       planners.setLocal(local);
       int result = ms.insertPlannerS(planners);
       List<PlannerS> list = ms.selectOngoingPlannerS(pid);
+      
+      //추천 다음 라인 검색	  
+      for(int i=0;i<list.size();i++){
+    	  Line line = ms.findNextLocal(list.get(i).getLocal());
+    	  
+    	  if(line==null){
+    		  line.setEndpoint("");    		  
+    	  }
+    	  
+    	  list.get(i).setNextArea(line.getEndpoint());
+    	  
+    	  
+      }	  
+	  
+	  
       model.addAttribute("list", list);
-      model.addAttribute("nextArea", nextArea);
+      
       return "planner/line";
    }
 

@@ -10,6 +10,15 @@ public class PlannerSArea {
 	private double x;
 	private double y;
 	private String areaimage;
+	private String nextArea;
+	
+	
+	public String getNextArea() {
+		return nextArea;
+	}
+	public void setNextArea(String nextArea) {
+		this.nextArea = nextArea;
+	}
 	public int getPlannerid() {
 		return plannerid;
 	}
