@@ -16,25 +16,35 @@
 </head>
 <body>
 <form action="MapSubmit.do" method="post" >
-   <fieldset>
-      <legend>입력창</legend>
-      <div class="elements">
-      <label class="label" for="name"><p>플래너 이름</label>
-      <input type="text" name="plannerTitle">
-      <label class="label" for="name"><p>여행출발일자</label>
-      <input type="date" name="startDate">
-      <div id="msg"></div>
-      <input type="submit" value="확인">
-      </div>
-   </fieldset>
-<!-- 
-<table><tr style="vertical-align: top;"><td>
-   <div>플래너 이름<input type="text" name="plannerTitle"></div>
-   <div>여행출발일자<input type="date" name="startDate"></div>
-    <div id="msg"></div>
-    <input type="submit" value="확인">
-</td><td >     
-<div id="map" style="border:1px solid #000;" ></div> -->
+   <table style="margin-left: 70px;">
+         <tr style="vertical-align: top;">
+            <td>
+               <table>
+                  <tr>
+                     
+                     <td>
+                        <fieldset>
+                           <legend>입력창</legend><p>
+                           <label class="label" for="name">플래너 이름</label>
+                           <input type="text" name="plannerTitle" value="${plannername }"><p>
+                           <label class="label" for="name">여행출발일자</label>
+                           <input type="date" name="startdate" value="${startdate }" />
+                        </fieldset>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td colspan="2">
+                     <div id="msg"></div>
+                       <input type="submit" value="확인">
+                       </td>
+                  </tr>
+               </table>
+               
+            </td>
+            <td rowspan="3" style="width: 765px"><div id="map" style="border:1px solid #000;" ></div></td>
+         </tr>
+      </table>
+
 
 <script type="text/javascript">   
 
@@ -161,7 +171,7 @@
                  // - absolute 의 경우 autoPosition 이 동작하지 않습니다. 
                  mapInfoTestWindow.setContent('<DIV style="border-top: 1px solid; border-bottom: 2px groove black; border-left: 1px solid; border-right: 2px groove black; margin-bottom: 1px; color: black; background-color: white; width: auto; height: auto;">'+
                          '<span style="color: #000000 !important; display: inline-block; font-size: 12px !important; font-weight: bold !important; letter-spacing: -1px !important; white-space: nowrap !important; padding: 2px 2px 2px 2px !important">'+
-                         '<table><tr id="item"><td><img src="images/area/'+oTarget.getTitle()+'.jpg"></td><td>'+oTarget.getTitle()+'<br>안녕하세요'+oTarget.getTitle()+' 입니다.<input id="btn" type="button" value="추가" onclick="appendItem(this)"><input type="hidden" class="local" value="'+oTarget.getTitle()+'" ><input type="hidden" id="mapx" value=""><input type="hidden" id="mapy" value=""><input type="hidden" name="plannerId" id="plannerId" value="${plannerId }"></td></tr></table></span></div>');                 
+                         '<table style="background-color: white; width:250px;"><tr id="item"><td><img src="images/car4.jpg"></td><td><div class="plus">'+oTarget.getTitle()+'</div></td><td><img id="btn" src="images/plus.jpg" onclick="appendItem(this)" width="30px" height="30px" class="image"><input type="hidden" class="local" value="'+oTarget.getTitle()+'" ><input type="hidden" id="mapx" value=""><input type="hidden" id="mapy" value=""><input type="hidden" name="plannerId" id="plannerId" value="${plannerId }"></td></tr></table></span></div>');                 
                  
                
                  mapInfoTestWindow.setPoint(oTarget.getPoint());

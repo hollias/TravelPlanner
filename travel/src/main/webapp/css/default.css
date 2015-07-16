@@ -65,6 +65,9 @@ ul{
 	font-size: 20px;
 	color: #666666;
 }
+.image:HOVER {
+	cursor:pointer;
+}
 /* tab css  */
 @import url(http://fonts.googleapis.com/css?family=Raleway);
 #cssmenu,
