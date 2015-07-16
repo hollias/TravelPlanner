@@ -66,7 +66,8 @@ create table hot(
    memberid varchar2(15)       --회원아이디
 );
 
-
+SELECT NVL(MAX(lineorder),0) + 1 FROM planners where plannerid=2
+delete from planners where plannerid = 3;
 select * from schedule s,hot h where s.hotid =h.hotid and h.local='강릉' and s.plannerName='하하하' and h.memberid='hollias';
 select * from planners where plannerid =1 order by lineorder;
 select * from planners p,area a where plannerid = 1 and p.local = a.local order by lineorder;
@@ -74,7 +75,7 @@ select lineorder,x,y from area a ,planner p , planners ps where p.plannername='�
       -- and memberid='a'
       and p.plannerid = ps.plannerid  and a.local = ps.local
       order by lineorder;
-select * from planner;
+select * from planners;
 select * from hot;
 select sum(day) day from planners where plannerid=1;
 select regdate+(select sum(day) day from planners where plannerid=1) as da  from planners where plannerid=1 and lineorder=1;

@@ -201,7 +201,7 @@ public class MapController {
       ms.updatePlannerName(planner);
 
       // 플래너s정보를 리스트에 저장후 삭제
-      List<PlannerS> list = ms.selectOngoingPlannerS(plannerId);
+      List<PlannerS> list = ms.selectOngoingPlannerS(plannerId);   	  
       ms.plannerSAllDelete(plannerId);
 
       // 경로 만드는 부분
@@ -232,17 +232,15 @@ public class MapController {
 
          planners.setPlannerid(list.get(i).getPlannerid());
          planners.setLocal(list.get(i).getLocal());
-         planners.setLineorder(i);
+         planners.setLineorder(i+1);
          // planners.setDd(day2[i]);
          planners.setDay(day1[i]);
+         
          if (da == null) {
-            SimpleDateFormat transFormat = new SimpleDateFormat(
-                  "yyyy-MM-dd");
+            SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
             try {
-
-               da = (Date) transFormat.parse(startdate);
-            } catch (ParseException e) {
-               // TODO Auto-generated catch block
+               da = (Date) transFormat.parse(startdate);               
+            } catch (ParseException e) {             
                e.printStackTrace();
             }
 

@@ -14,7 +14,7 @@
   
     <insert id="insertPlannerS" parameterType="PlannerS">		
    		<selectKey keyProperty="lineorder" resultType="Integer"  order="BEFORE">
-			SELECT NVL(MAX(lineorder),0) + 1 FROM planners
+			SELECT NVL(MAX(lineorder),0) + 1 FROM planners where plannerid=#{plannerid}
 		</selectKey>
 		<![CDATA[ insert into plannerS values (#{plannerid},#{local},Sysdate,#{lineorder},0) ]]>
 	</insert>	
@@ -45,9 +45,6 @@
 	</delete>
 	
 	<insert id="submitPlannerS" parameterType="PlannerS">
-	<selectKey keyProperty="lineorder" resultType="Integer"  order="BEFORE">
-			SELECT NVL(MAX(lineorder),0) + 1 FROM planners
-		</selectKey>
 		<![CDATA[ insert into plannerS values (#{plannerid},#{local},#{da},#{lineorder},#{day}) ]]>
 	</insert>
 	
