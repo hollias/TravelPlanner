@@ -189,7 +189,24 @@ public class MapController {
 
       return "planner/line";
    }
-
+   
+   @RequestMapping(value = "deleteSchedule")
+   public String deleteSchedule(String index, Model model, HttpSession session) {
+	   
+      int inx = Integer.parseInt(index);
+      ScheduleHot sch = ms.selectScheduleHotInfo(inx);
+      Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);      
+      ms.deleteSchedule(inx);       
+      
+     String dday = sch.getDday()+"";
+     String plannerName = sch.getPlannername();
+     String local = sch.getLocal();
+     List<ScheduleHot> list = ms.selectDdaySchedule(dday, plannerName,loginUser.getMemberid(),local);
+     model.addAttribute("list", list);
+     for(int i=0;i<list.size();i++)
+    	 System.out.println(list.get(i).getScheduleid()+list.get(i).getHotname());
+      return "planner/scheduleLine";
+   }
    @RequestMapping(value = "MapSubmit")
    public String MapSubmit(String startdate, String plannerTitle, String day,
          Model model, HttpSession session) {

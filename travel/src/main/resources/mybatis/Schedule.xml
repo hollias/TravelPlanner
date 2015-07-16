@@ -14,6 +14,12 @@
     <select id="scheduleCount" resultType="Integer" parameterType="java.util.Map" >
         select nvl(count(*),0) from schedule where memberid=#{memberid} and plannername=#{plannerTitle}
     </select>
+    <select id="getTotalSchedule" resultType="Schedule">
+        select * from schedule
+    </select>
+    <delete id="deleteSchedule" parameterType="int">
+    	delete from schedule where scheduleid=#{inx}
+    </delete>
     
     <insert id="insertSchedule" useGeneratedKeys="true" keyProperty="scheduleid" parameterType="Schedule">
     	<selectKey keyProperty="scheduleid" resultType="int"  order="BEFORE">

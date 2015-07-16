@@ -66,6 +66,8 @@ create table hot(
    memberid varchar2(15)       --회원아이디
 );
 
+select * from schedule s, hot h where s.hotid =h.hotid and scheduleid=26;
+select * from schedule s, hot h where s.hotid=h.hotid and h.memberid='hollias' and s.plannername='asdf'
 SELECT NVL(MAX(lineorder),0) + 1 FROM planners where plannerid=2
 delete from planners 
 select * from schedule s,hot h where s.hotid =h.hotid and h.local='강릉' and s.plannerName='하하하' and h.memberid='hollias';

@@ -56,4 +56,8 @@
   <select id="scheduleLocalCount" resultType="Integer" parameterType="java.util.Map" >
         select nvl(count(*),0) from schedule s, hot h where s.hotid =h.hotid and s.memberid=#{memberid} and plannername=#{plannerName} and local=#{local}
   </select>
+  
+  <select id="selectScheduleHotInfo" resultMap="ScheduleHotResult" parameterType="int" >
+        select * from schedule s, hot h where s.hotid =h.hotid and scheduleid=#{inx}
+  </select>
 </mapper>

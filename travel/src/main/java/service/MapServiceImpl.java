@@ -226,5 +226,24 @@ public class MapServiceImpl implements MapService{
 	}
 
 
+	@Override
+	public List<Schedule> getTotalSchedule() {
+		return sd.getTotalSchedule();
+	}
+
+
+	@Override
+	public void deleteSchedule(int inx) {
+		sd.deleteSchedule(inx);
+		
+	}
+
+
+	@Override
+	public ScheduleHot selectScheduleHotInfo(int inx) {
+		return shd.selectScheduleHotInfo(inx);
+	}
+
+
 	
 }

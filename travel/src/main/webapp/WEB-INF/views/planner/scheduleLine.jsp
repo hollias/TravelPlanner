@@ -13,7 +13,7 @@
 </head>
 <body>
 	<c:forEach var="list" items="${list }">
-	<table id="stable" border="1">	
+	<table border="1">	
 	<tr>
 		<td><img alt="" src="resources/upload/${list.hotimage }" width="100"></td><td>${list.hotname }</td>
 		<td><input type="hidden" id="local" value="${list.scheduleid }">

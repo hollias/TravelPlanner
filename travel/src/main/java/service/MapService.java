@@ -57,4 +57,10 @@ public interface MapService {
 	public int scheduleLocalCount(String memberid,String plannerTitle,String local);
 	// Date 검색해서 day 더해서 가져오기
 	public Date da(int plannerId);
+	//모든 스케쥴을 가져옴
+	public List<Schedule> getTotalSchedule();
+	//모든 스케쥴 지움
+	public void deleteSchedule(int inx);
+	//해당 인텍스의 스케쥴정보를 가져오는것
+	public ScheduleHot selectScheduleHotInfo(int inx);
 }

@@ -28,6 +28,17 @@ public class ScheduleDaoImpl implements ScheduleDao{
 		return session.insert("insertSchedule", schedule);
 	}
 
+	@Override
+	public List<Schedule> getTotalSchedule() {
+		return session.selectList("getTotalSchedule");
+	}
+
+	@Override
+	public void deleteSchedule(int inx) {
+		session.delete("deleteSchedule",inx);
+		
+	}
+
 	
 	
 }

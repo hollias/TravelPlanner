@@ -15,4 +15,5 @@ public interface ScheduleHotDao {
 	public List<ScheduleHot> selectDdaySchedule(String dday, String plannerName, String memberid, String local);
 	public List<ScheduleHot> getLocalSchedule(String memberid,String plannerTitle, String local);
 	public int scheduleLocalCount(String memberid, String plannerTitle,String local);
+	public ScheduleHot selectScheduleHotInfo(int inx);
 }

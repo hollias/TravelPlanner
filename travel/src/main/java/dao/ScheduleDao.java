@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface ScheduleDao {
 	public int scheduleCount(String memberid, String plannerTitle);
 	public int insertSchedule(Schedule schedule);
+	public List<Schedule> getTotalSchedule();
+	public void deleteSchedule(int inx);
 }

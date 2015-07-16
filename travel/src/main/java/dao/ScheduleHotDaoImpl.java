@@ -83,5 +83,9 @@ public class ScheduleHotDaoImpl implements ScheduleHotDao{
 		map.put("local", local);
 		return session.selectOne("scheduleLocalCount", map);
 	}
+	@Override
+	public ScheduleHot selectScheduleHotInfo(int inx) {
+		return session.selectOne("selectScheduleHotInfo", inx);
+	}
 	
 }

@@ -1,3 +1,4 @@
-/controller/
-/dao/
 /mybatis/
+/controller/
+/service/
+/dao/
