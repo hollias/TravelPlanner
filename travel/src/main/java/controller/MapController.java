@@ -94,8 +94,7 @@ public class MapController {
             int ongoingPlannerId = ms.ongoingPlannerId(loginUser
                   .getMemberid());
             String plannername = ms.findPlannerName(ongoingPlannerId);
-            List<PlannerSArea> list = ms
-                  .selectPlannerSArea(ongoingPlannerId);
+            List<PlannerSArea> list = ms.selectPlannerSArea(ongoingPlannerId);
             String startdate = ms.findPlannerStartdate(ongoingPlannerId);
 
             model.addAttribute("list", list);
