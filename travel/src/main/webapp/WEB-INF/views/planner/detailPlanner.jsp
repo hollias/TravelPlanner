@@ -50,6 +50,7 @@
     </c:if>
     
     </div>
+    <div id="mmm"></div>
     <input type="submit" value="확인">
 </td><td >     
 <div id="map" style="border:1px solid #000;" ></div>
@@ -220,7 +221,7 @@
         
          
          var sendData = 'plannerId='+plannerId+'&plannerName='+plannerName+'&local='+local+'&dday='+dday+'&x='+mapx+'&y='+mapy;
-         alert(sendData); 
+          
       $.ajaxSetup({
          type:"POST",
          url:"addSchedule.do",
@@ -233,12 +234,12 @@
     //스케쥴S를 넣는것을 고민해봐야함.
     function cancel(a){
         
-        var aa = $(a).parent().parent().parent().parent().parent().parent().find('#sid').val()
-        $(a).parent().parent().parent().parent().parent().remove(); 
+        var aa = $(a).parent().parent().parent().parent().parent().parent().find('#sid').val();
+        $(a).parent().parent().parent().parent().remove(); 
        
        
         var sendData = 'index='+aa;       
-         
+         alert(aa);
         $.ajaxSetup({
              type:"POST",
              url:"deleteSchedule.do",

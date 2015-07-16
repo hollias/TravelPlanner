@@ -134,7 +134,7 @@ public class MapController {
    @RequestMapping(value = "addSchedule")
    public String lineDetail(String dday, String local, String plannerId,
          Model model, HttpSession session, String x, String y) {
-	   
+      
       double x1 = Double.parseDouble(x);
       int pid = Integer.parseInt(plannerId);
       int dday1 = Integer.parseInt(dday);
@@ -155,7 +155,7 @@ public class MapController {
             loginUser.getMemberid(),local);
       
       model.addAttribute("list", list);
-
+      
       return "planner/scheduleLine";
    }
 
@@ -181,7 +181,7 @@ public class MapController {
       list.remove(inx);
       
       for (int i = 0; i < list.size(); i++) {
-    	 list.get(i).setLineorder(i+1);
+        list.get(i).setLineorder(i+1);
          ms.submitPlannerS2(list.get(i));
       }
       List<PlannerS> list1 = ms.selectOngoingPlannerS(plannerId);
@@ -192,7 +192,7 @@ public class MapController {
    
    @RequestMapping(value = "deleteSchedule")
    public String deleteSchedule(String index, Model model, HttpSession session) {
-	   
+      
       int inx = Integer.parseInt(index);
       ScheduleHot sch = ms.selectScheduleHotInfo(inx);
       Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);      
@@ -204,7 +204,7 @@ public class MapController {
      List<ScheduleHot> list = ms.selectDdaySchedule(dday, plannerName,loginUser.getMemberid(),local);
      model.addAttribute("list", list);
      for(int i=0;i<list.size();i++)
-    	 System.out.println(list.get(i).getScheduleid()+list.get(i).getHotname());
+        System.out.println(list.get(i).getScheduleid()+list.get(i).getHotname());
       return "planner/scheduleLine";
    }
    @RequestMapping(value = "MapSubmit")
@@ -222,7 +222,7 @@ public class MapController {
       ms.updatePlannerName(planner);
 
       // 플래너s정보를 리스트에 저장후 삭제
-      List<PlannerS> list = ms.selectOngoingPlannerS(plannerId);   	  
+      List<PlannerS> list = ms.selectOngoingPlannerS(plannerId);        
       ms.plannerSAllDelete(plannerId);
 
       // 경로 만드는 부분
@@ -290,7 +290,7 @@ public class MapController {
          model.addAttribute("slist", slist);
 
       } else {
-    	  
+         
          List<ScheduleHot> slist = ms.getAllSchedule(loginUser.getMemberid(), plannerTitle,local);
          model.addAttribute("slist", slist);
       }
@@ -345,7 +345,7 @@ public class MapController {
       model.addAttribute("plannerS", ps1);
       String dd = ps1.get(lineorder1-1).getDay();
       
-      model.addAttribute("lineorder",lineorder);      		
+      model.addAttribute("lineorder",lineorder);            
       model.addAttribute("day",dd);
       model.addAttribute("hot", al);
       model.addAttribute("plannerId", plannerId);
