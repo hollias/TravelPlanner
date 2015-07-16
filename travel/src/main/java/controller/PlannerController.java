@@ -21,53 +21,58 @@ import service.RailnoService;
 import utils.WebConstants;
 @Controller
 public class PlannerController {
-	@Autowired
-	private RailnoService rs;
-	@Autowired
-	private MapService ms;
-	
-	@RequestMapping(value="diary")	
-	public String diary(Model model, HttpSession session){
-		List<Area> al = (List<Area>) ms.getArea();
-		model.addAttribute("area", al);
-		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
-		if(loginUser != null){
-			model.addAttribute("loginUser", loginUser);
-		}
-		if (loginUser == null) {
-			return "joinus/login";
-		}
-		List<Planner> list = rs.list(loginUser.getMemberid());
-		List<PlannerSJoin> diary = rs.diary(loginUser.getMemberid());
-		Planner plannerOne = rs.plannerOne(loginUser.getMemberid());
-		model.addAttribute("plannerOne",plannerOne);
-		model.addAttribute("diary",diary);
-		model.addAttribute("list",list);
-		return "diary/diary";
-	}
-	@RequestMapping(value="diarycheck" , method=RequestMethod.POST)
-	public String diarycheck(Model model , String plannername, HttpSession session){
-		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
-		if(loginUser != null){
-			model.addAttribute("loginUser", loginUser);
-		}
-		List<Planner> list = rs.list(loginUser.getMemberid());
-		List<PlannerSJoin> diarycheck = rs.diarycheck(plannername);
-		model.addAttribute("list",list);
-		model.addAttribute("diarycheck",diarycheck);
-		return "diary/diarycheck";
-	}
-	@RequestMapping(value="sccal")
-	public String sccal(Model model, HttpSession session , String plannerid, String plannername){
-		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
-		if(loginUser != null){
-			model.addAttribute("loginUser", loginUser);
-		}
-		List<PlannerS> calendar = rs.calendar(plannerid);
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
-		model.addAttribute("plannerName",plannerName);
-		System.out.println(calendar.get(1).getDay());
-		model.addAttribute("calendar",calendar);
-		return "diary/sccal";
-	}
+   @Autowired
+   private RailnoService rs;
+   @Autowired
+   private MapService ms;
+   
+   @RequestMapping(value="diary")   
+   public String diary(Model model, HttpSession session){
+      List<Area> al = (List<Area>) ms.getArea();
+      model.addAttribute("area", al);
+      Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+      if(loginUser != null){
+         model.addAttribute("loginUser", loginUser);
+      }
+      if (loginUser == null) {
+         return "joinus/login";
+      }
+      System.out.println(1);
+      List<Planner> list = rs.list(loginUser.getMemberid());
+      System.out.println(2);
+      List<PlannerSJoin> diary = rs.diary(loginUser.getMemberid());
+      System.out.println(3);
+      Planner plannerOne = rs.plannerOne(loginUser.getMemberid());
+      System.out.println(4);
+      model.addAttribute("plannerOne",plannerOne);
+      System.out.println(5);
+      model.addAttribute("diary",diary);
+      model.addAttribute("list",list);
+      return "diary/diary";
+   }
+   @RequestMapping(value="diarycheck" , method=RequestMethod.POST)
+   public String diarycheck(Model model , String plannername, HttpSession session){
+      Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+      if(loginUser != null){
+         model.addAttribute("loginUser", loginUser);
+      }
+      List<Planner> list = rs.list(loginUser.getMemberid());
+      List<PlannerSJoin> diarycheck = rs.diarycheck(plannername);
+      model.addAttribute("list",list);
+      model.addAttribute("diarycheck",diarycheck);
+      return "diary/diarycheck";
+   }
+   @RequestMapping(value="sccal")
+   public String sccal(Model model, HttpSession session , String plannerid, String plannername){
+      Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+      if(loginUser != null){
+         model.addAttribute("loginUser", loginUser);
+      }
+      List<PlannerS> calendar = rs.calendar(plannerid);
+      Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+      model.addAttribute("plannerName",plannerName);
+      System.out.println(calendar.get(1).getDay());
+      model.addAttribute("calendar",calendar);
+      return "diary/sccal";
+   }
 }

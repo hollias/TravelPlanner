@@ -8,17 +8,17 @@
     <result property="plannername" column="plannername"/>
     <result property="memberid" column="memberid"/>
     <result property="ongoing" column="ongoing"/>
-	<result property="local" column="local" />
+   <result property="local" column="local" />
     <result property="regdate" column="regdate"/>
     <result property="lineorder" column="lineorder"/>
     <result property="day" column="day"/>
   </resultMap>
   <select id="diary" resultType="PlannerSJoin" parameterType="java.util.Map">
-		select local, memberid , lineorder ,plannername from planner p, planners ps where
-			p.plannerid=ps.plannerid and ongoing=0 order by lineorder
+      select local, memberid , lineorder ,plannername from planner p, planners ps where
+         p.plannerid=ps.plannerid and memberid=#{memberid} and ongoing=0 order by lineorder
   </select>
   <select id="diarycheck" resultType="PlannerSJoin" parameterType="java.util.Map">
-		select local, memberid , lineorder ,plannername from planner p ,planners ps where
-			p.plannerid=ps.plannerid and ongoing=1 and plannername=#{plannername} order by lineorder
+      select local, memberid , lineorder ,plannername from planner p ,planners ps where
+         p.plannerid=ps.plannerid and ongoing=1 and plannername=#{plannername} order by lineorder
   </select>
 </mapper>
