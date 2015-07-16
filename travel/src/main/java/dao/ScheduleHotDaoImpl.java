@@ -56,8 +56,9 @@ public class ScheduleHotDaoImpl implements ScheduleHotDao{
 	}
 	@Override
 	public List<ScheduleHot> selectDdaySchedule(String dday,
-			String plannerName, String memberid) {
+			String plannerName, String memberid,String local) {
 		Map<String, String> map = new HashMap<String, String>();
+		map.put("local", local);
 		map.put("dday", dday);
 		map.put("plannerName", plannerName);
 		map.put("memberid", memberid);

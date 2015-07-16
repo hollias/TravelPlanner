@@ -188,8 +188,8 @@ public class MapServiceImpl implements MapService{
 
 	@Override
 	public List<ScheduleHot> selectDdaySchedule(String dday,
-			String plannerName, String memberid) {
-		return shd.selectDdaySchedule(dday,plannerName,memberid);
+			String plannerName, String memberid,String local) {
+		return shd.selectDdaySchedule(dday,plannerName,memberid,local);
 	}
 	
 	public List<Planner> mainMap() {

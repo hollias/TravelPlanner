@@ -47,7 +47,8 @@
   			where s.hotid=h.hotid and 
   					h.memberid=#{memberid} and 
   					s.plannername=#{plannerName} and
-  					s.dday=#{dday}
+  					s.dday=#{dday} and
+  					h.local=#{local}
   </select>
   <select id="getLocalSchedule" resultMap="ScheduleHotResult" parameterType="java.util.Map">
   		select * from schedule s,hot h where s.hotid =h.hotid and h.local=#{local} and s.plannerName=#{plannerName} and h.memberid=#{memberid}

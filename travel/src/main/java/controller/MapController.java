@@ -151,7 +151,7 @@ public class MapController {
       int result = ms.insertSchedule(schedule);
       
       List<ScheduleHot> list = ms.selectDdaySchedule(dday, plannerName,
-            loginUser.getMemberid());
+            loginUser.getMemberid(),local);
       
       model.addAttribute("list", list);
 
@@ -297,7 +297,7 @@ public class MapController {
       Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
       int dday1 = Integer.parseInt(dday);
       int lineorder1 = Integer.parseInt(lineorder);
-    		  
+      
       Planner planner = new Planner();
       planner.setMemberid(loginUser.getMemberid());
 
@@ -307,7 +307,7 @@ public class MapController {
       model.addAttribute("startDate", startDate);
 
       List<ScheduleHot> slist = ms.selectDdaySchedule(dday, plannerTitle,
-            loginUser.getMemberid());
+            loginUser.getMemberid(),local);
       model.addAttribute("slist", slist);
 
       List<PlannerS> ps = ms.selectOngoingPlannerS(plannerId);
@@ -373,6 +373,7 @@ public class MapController {
 
       List<Hot> al = ms.getHot(local);
       
+      model.addAttribute("lineorder",lineorder);
       model.addAttribute("local",local);
       model.addAttribute("dday",1);
       model.addAttribute("hot", al);

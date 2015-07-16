@@ -26,13 +26,13 @@
 <table>
    <tr>
    <c:forEach var="plannerS" items="${plannerS }">
-      <td><a href="selectLocal.do?lineorder=${plannerS.lineorder }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local }">${plannerS.local }</a></td>
+      <td><a href="selectLocal.do?lineorder=${plannerS.lineorder }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local1 }">${plannerS.local }</a></td>
    </c:forEach>
    </tr>
 </table>
 <table><tr style="vertical-align: top;"><td>
    <c:forEach var="i" begin="1" end="${day }">
-      <div class="day"><a href="selectDday.do?dday=${i }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local }&lineorder=${lineorder }">${i }일차</a></div>
+      <div class="day"><a href="selectDday.do?dday=${i }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local1 }&lineorder=${lineorder }">${i }일차</a></div>
    </c:forEach>
    <div>입력할 플래너 : ${plannerTitle }</div>
    <div>여행출발일자 : ${startDate } </div>

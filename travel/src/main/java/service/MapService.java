@@ -46,7 +46,7 @@ public interface MapService {
 	//일정표를 삽입하는 부분
 	public int insertSchedule(Schedule schedule);
 	//dday와 memberid와 plannername을 통해 schedule을 가져오는것
-	public List<ScheduleHot> selectDdaySchedule(String dday, String plannerName, String memberid);
+	public List<ScheduleHot> selectDdaySchedule(String dday, String plannerName, String memberid,String local);
 	//매인페이지 새로만들어진 플레너 경로 및 순서 가지고 오는 것
 	public List<Planner> mainMap();
 	//스케쥴상세페이지에서 지역을 눌렀을때 지역 스케쥴을 가져오는것
