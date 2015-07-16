@@ -37,15 +37,10 @@ public class PlannerController {
       if (loginUser == null) {
          return "joinus/login";
       }
-      System.out.println(1);
       List<Planner> list = rs.list(loginUser.getMemberid());
-      System.out.println(2);
       List<PlannerSJoin> diary = rs.diary(loginUser.getMemberid());
-      System.out.println(3);
       Planner plannerOne = rs.plannerOne(loginUser.getMemberid());
-      System.out.println(4);
       model.addAttribute("plannerOne",plannerOne);
-      System.out.println(5);
       model.addAttribute("diary",diary);
       model.addAttribute("list",list);
       return "diary/diary";
