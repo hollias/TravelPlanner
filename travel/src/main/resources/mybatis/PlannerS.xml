@@ -48,6 +48,10 @@
 		<![CDATA[ insert into plannerS values (#{plannerid},#{local},#{da},#{lineorder},#{day}) ]]>
 	</insert>
 	
+	<insert id="submitPlannerS2" parameterType="PlannerS">
+		<![CDATA[ insert into plannerS(plannerid,local,lineorder,day) values (#{plannerid},#{local},#{lineorder},0) ]]>
+	</insert>
+	
   	<select id="getLocalBylineorder" parameterType="java.util.Map" resultType="PlannerS">		
 		<![CDATA[ select * from planners where plannerid = #{plannerId} and lineorder=#{lineorder} ]]>
 	</select>

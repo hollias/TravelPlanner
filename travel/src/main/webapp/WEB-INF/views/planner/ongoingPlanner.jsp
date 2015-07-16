@@ -267,6 +267,7 @@
         
         var aa = $(a).parent().parent().parent().parent().parent().find('#itemlineorder').html();
         $(a).parent().parent().parent().parent().parent().remove();
+       
         var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
          aPoints.splice(aa-1,1); 
          oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함

@@ -140,7 +140,7 @@ public class MapServiceImpl implements MapService{
 	}
 	@Override
 	public void submitPlannerS2(PlannerS plannerS) {
-		psd.submitPlannerS(plannerS);		
+		psd.submitPlannerS2(plannerS);		
 	}
 
 	@Override

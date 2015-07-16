@@ -67,7 +67,7 @@ create table hot(
 );
 
 SELECT NVL(MAX(lineorder),0) + 1 FROM planners where plannerid=2
-delete from planners where plannerid = 3;
+delete from planners 
 select * from schedule s,hot h where s.hotid =h.hotid and h.local='강릉' and s.plannerName='하하하' and h.memberid='hollias';
 select * from planners where plannerid =1 order by lineorder;
 select * from planners p,area a where plannerid = 1 and p.local = a.local order by lineorder;

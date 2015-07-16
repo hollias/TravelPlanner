@@ -167,7 +167,7 @@ public class MapController {
    @RequestMapping(value = "deletePlannerS")
    public String deletePlannerS(String index, Model model, HttpSession session) {
       int inx = Integer.parseInt(index) - 1;
-
+      System.out.println(inx);
       Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
       // planner 정보 저장
       Planner planner = new Planner();
@@ -175,10 +175,13 @@ public class MapController {
 
       int plannerId = ms.selectPlannerId(planner);
       List<PlannerS> list = ms.selectOngoingPlannerS(plannerId);
-      ms.plannerSAllDelete(plannerId);
+      
+      ms.plannerSAllDelete(plannerId);      
       list.remove(inx);
+      
       for (int i = 0; i < list.size(); i++) {
-         ms.submitPlannerS(list.get(i));
+    	 list.get(i).setLineorder(i+1);
+         ms.submitPlannerS2(list.get(i));
       }
       List<PlannerS> list1 = ms.selectOngoingPlannerS(plannerId);
       model.addAttribute("list", list1);
