@@ -22,7 +22,7 @@
 </head>
 <body>
 <form action="MapSubmit.do" method="post">
-      <table border="1">
+      <table style="margin-left: 70px;">
          <tr style="vertical-align: top;">
             <td>
                <table>
@@ -69,7 +69,7 @@
                </table>
                
             </td>
-            <td rowspan="3"><div id="map" style="border:1px solid #000;" ></div></td>
+            <td rowspan="3" style="width: 765px"><div id="map" style="border:1px solid #000;" ></div></td>
          </tr>
 
       </table>
@@ -104,7 +104,7 @@
            activateTrafficMap : false,                      // 실시간 교통정보 활성화 여부
            activateBicycleMap : false,                    // 자전거 지도 활성화 여부
            minMaxLevel : [ 1, 14 ],                         // 지도의 최소/최대 축척 레벨
-           size : new nhn.api.map.Size(550, 920)    // 지도의 크기
+           size : new nhn.api.map.Size(765, 920)    // 지도의 크기
      });
      
      var mapInfoTestWindow = new nhn.api.map.InfoWindow(); // - info window 생성
@@ -200,7 +200,7 @@
                  // - absolute 의 경우 autoPosition 이 동작하지 않습니다. 
                  mapInfoTestWindow.setContent('<DIV style="border-top: 1px solid; border-bottom: 2px groove black; border-left: 1px solid; border-right: 2px groove black; margin-bottom: 1px; color: black; background-color: white; width: auto; height: auto;">'+
                          '<span style="color: #000000 !important; display: inline-block; font-size: 12px !important; font-weight: bold !important; letter-spacing: -1px !important; white-space: nowrap !important; padding: 2px 2px 2px 2px !important">'+
-                         '<table style="background-color: white;"><tr id="item"><td><img src="images/car4.jpg"></td><td>'+oTarget.getTitle()+'<br>안녕하세요'+oTarget.getTitle()+' 입니다.<input id="btn" type="button" value="추가" onclick="appendItem(this)"><input type="hidden" class="local" value="'+oTarget.getTitle()+'" ><input type="hidden" id="mapx" value=""><input type="hidden" id="mapy" value=""><input type="hidden" name="plannerId" id="plannerId" value="${plannerId }"></td></tr></table></span></div>');                 
+                         '<table style="background-color: white; width:250px;"><tr id="item"><td><img src="images/car4.jpg"></td><td><div class="plus">'+oTarget.getTitle()+'</div></td><td><img id="btn" src="images/plus.jpg" onclick="appendItem(this)" width="30px" height="30px"><input type="hidden" class="local" value="'+oTarget.getTitle()+'" ><input type="hidden" id="mapx" value=""><input type="hidden" id="mapy" value=""><input type="hidden" name="plannerId" id="plannerId" value="${plannerId }"></td></tr></table></span></div>');                 
                  
                
                  mapInfoTestWindow.setPoint(oTarget.getPoint());
@@ -265,7 +265,7 @@
     function cancel(a){
         
         var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();        
-        $(a).parent().parent().parent().parent().remove();
+        $(a).parent().parent().parent().parent().parent().remove();
         var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
          aPoints.splice(aa-1,1); 
          oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
@@ -286,7 +286,8 @@
      </script>
       
 </td></tr></table>         
-   
+
+
 </form>
 </body>
 </html>

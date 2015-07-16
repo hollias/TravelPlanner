@@ -13,34 +13,24 @@
 </head>
 <body>
 <c:forEach var="item" items="${list }">
-   <table border="1" id="local">
-   <tr>
-      <td>
-         <input type="hidden" id="local" value="${item.local }">
-         <label class="label" for="name">${item.local }</label>
-      </td>
-      <td>
-         <select name="day">
-            <option value="1">1박</option>
-            <option value="2">2박</option>
-            <option value="3">3박</option>
-            <option value="4">4박</option>
-            <option value="5">5박</option>
-         </select>
-      </td>
-      <td rowspan="2">
-         <input type="button" value="취소" onclick="cancel(this)">
-      </td>
-   </tr>
-   <tr>
-      <td>
-         다음추천여행지
-      </td>
-      <td>
-         여행추천지
-      </td>
-   </tr>
-   </table>
+	<fieldset>
+		<legend>${item.local }</legend>
+		<table>
+			<tr><td><input type="hidden" id="local" value="${item.local }" class="ongoing">
+			<label class="ongoing" for="name">${item.local }</label></td>
+			<td>
+				<select name="day" class="ongoing">
+					<option value="1">1박</option>
+		            <option value="2">2박</option>
+		            <option value="3">3박</option>
+		            <option value="4">4박</option>
+		            <option value="5">5박</option>
+			     </select>
+			</td>
+			<td rowspan="2"><input type="button" value="취소" onclick="cancel(this)" ></td></tr>
+			<tr><td class="ongoing">다음추천여행지</td><td class="ongoing">여행추천지</td></tr>
+		</table>
+	</fieldset>
 </c:forEach>
 </body>
 </html>
