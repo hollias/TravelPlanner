@@ -234,12 +234,12 @@
     //스케쥴S를 넣는것을 고민해봐야함.
     function cancel(a){
         
-        var aa = $(a).parent().parent().parent().parent().parent().parent().find('#sid').val();
+        var aa = $(a).parent().parent().parent().parent().find('#sid').val();
         $(a).parent().parent().parent().parent().remove(); 
        
        
         var sendData = 'index='+aa;       
-         alert(aa);
+         alert(sendData);
         $.ajaxSetup({
              type:"POST",
              url:"deleteSchedule.do",
