@@ -84,7 +84,6 @@ public class MemberController {
 		Date da = null;
 		GregorianCalendar gc =  new GregorianCalendar();
 		Date date = gc.getTime();
-		System.out.println("date="+date);
 		if(member == null){
 			model.addAttribute("message", "아이디가 없습니다.");
 			return "joinus/login";
@@ -103,8 +102,10 @@ public class MemberController {
 			return "main";
 			}else{
 				da = ms.da(ps.getPlannerid());
-				if(date.after(da)){
-					 rs.plongo(""+ps.getPlannerid(), loginUser.getMemberid());
+				if(da!=null){
+					if(date.after(da)){
+						 rs.plongo(""+ps.getPlannerid(), loginUser.getMemberid());
+					}
 				}
 				model.addAttribute("loginUser", loginUser);
 				model.addAttribute("member", member);
