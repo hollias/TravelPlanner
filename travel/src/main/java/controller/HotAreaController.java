@@ -45,12 +45,18 @@ public class HotAreaController {
 	}
 	@RequestMapping(value="hacontent")
 	public String haOne(Model model, HttpSession session,String plannername, String plannerid
-				,String local){
+				,String local,String memberid){
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+		Planner plannerName = null;
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+		if(memberid==null){
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
+		}else{
+			plannerName = rs.plannerName(memberid, plannername);
+		}
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		Area areaOne = rs.areaOne(local);
 		List<Hot> hotimage = rs.hotimage(local);
@@ -58,23 +64,31 @@ public class HotAreaController {
 		model.addAttribute("areaOne",areaOne);
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
+		model.addAttribute("memberid",memberid);
 		return "hotarea/hacontent";
 	}
 	@RequestMapping(value="hotmap")
 	public String hotmap(Model model, HttpSession session,String plannername, String plannerid
-				,String local, Hot hot){
+				,String local, Hot hot,String memberid){
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+		Planner plannerName = null;
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
+		if(memberid==null){
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
+		}else{
+			plannerName = rs.plannerName(memberid, plannername);
+		}
 		List<Hot> hotlist = rs.hotlist(hot);
 		Area areaOne = rs.areaOne(local);
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		model.addAttribute("areaOne",areaOne);
 		model.addAttribute("hotlist",hotlist);
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
+		model.addAttribute("memberid",memberid);
 		return "hotarea/hotmap";
 	}
 }

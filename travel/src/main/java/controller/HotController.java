@@ -30,13 +30,19 @@ public class HotController {
 	}
 	@RequestMapping(value="hotrest")
 	public String hotrest(Model model, HttpSession session,String plannername, String plannerid
-				,String local){
+				,String local,String memberid){
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+		Planner plannerName = null;
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
 		List<Hot> hotrest = rs.hotrest(local);
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+		if(memberid==null){
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
+		}else{
+			plannerName = rs.plannerName(memberid, plannername);
+		}
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		Area areaOne = rs.areaOne(local);
 		List<Hot> hotimage = rs.hotimage(local);
@@ -45,17 +51,24 @@ public class HotController {
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
 		model.addAttribute("hotrest",hotrest);
+		model.addAttribute("memberid",memberid);
 		return "hotarea/hotrest";
 	}
 	@RequestMapping(value="hottourist")
 	public String hottourist(Model model, HttpSession session,String plannername, String plannerid
-				,String local){
+				,String local,String memberid){
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+		Planner plannerName = null;
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
+		if(memberid==null){
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
+		}else{
+			plannerName = rs.plannerName(memberid, plannername);
+		}
 		List<Hot> hottourist = rs.hottourist(local);
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		Area areaOne = rs.areaOne(local);
 		List<Hot> hotimage = rs.hotimage(local);
@@ -64,17 +77,24 @@ public class HotController {
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
 		model.addAttribute("hottourist",hottourist);
+		model.addAttribute("memberid",memberid);
 		return "hotarea/hottourist";
 	}
 	@RequestMapping(value="hotstay")
 	public String hotstay(Model model, HttpSession session,String plannername, String plannerid
-				,String local){
+				,String local,String memberid){
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+		Planner plannerName = null;
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
+		if(memberid==null){
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
+		}else{
+			plannerName = rs.plannerName(memberid, plannername);
+		}
 		List<Hot> hotstay = rs.hotstay(local);
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		Area areaOne = rs.areaOne(local);
 		List<Hot> hotimage = rs.hotimage(local);
@@ -83,6 +103,7 @@ public class HotController {
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
 		model.addAttribute("hotstay",hotstay);
+		model.addAttribute("memberid",memberid);
 		return "hotarea/hotstay";
 	}
 	@RequestMapping(value="hotajax")

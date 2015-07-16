@@ -15,15 +15,15 @@
 	<div id="hotmenu" style="margin-left: 74px;">
 		<ul>
 			<li style="margin-left :14px;"><a href="hacontent.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">지역설명</a></li>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}">지역설명</a></li>
 			<li style="margin-left :14px;"><a href="hotrest.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">맛집</a></li>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}">맛집</a></li>
 			<li style="margin-left :14px;"><a href="hottourist.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">관광지</a></li>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}">관광지</a></li>
 			<li style="margin-left :14px;"><a href="hotstay.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">숙소</a></li>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}">숙소</a></li>
 			<li style="margin-left :14px;"><a href="hotmap.do?local=${areaOne.local }&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}">지도</a></li>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}">지도</a></li>
 			<li style="margin-left :14px;"><a href="hotwrite.do">내가스팟등록하기</a></li>
 		</ul>
 	</div>
@@ -35,9 +35,9 @@
 						<legend>일정표</legend>
 						<div class="elements">
 						<label class="label" for="name"><a href="schedule.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>요약표</a></label>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}" class="home"><p>요약표</a></label>
 						<label class="label" for="name"><a href="sccal.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>달력</a></label>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}" class="home"><p>달력</a></label>
 						</div>
 					</fieldset>
 				</form>
@@ -66,7 +66,7 @@
 						<div class="elements1">
 						<c:forEach var="calendar" items="${calendar }">
 						<label class="label" for="name"><a href="hotarea.do?local=${calendar.local}&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>${calendar.local }</a></label>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}" class="home"><p>${calendar.local }</a></label>
 						</c:forEach>
 						</div>
 					</fieldset>
