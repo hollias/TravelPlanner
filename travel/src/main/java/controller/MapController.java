@@ -147,7 +147,7 @@ public class MapController {
       hot.setX(x1);
       int hotId = ms.findHotId(hot);
       schedule.setHotid(hotId);
-      System.out.println("local="+local+"dday="+dday+"planid"+plannerId);
+      
       int result = ms.insertSchedule(schedule);
       
       List<ScheduleHot> list = ms.selectDdaySchedule(dday, plannerName,
@@ -278,11 +278,12 @@ public class MapController {
       Area area = rs.areaOne(local);
       model.addAttribute("x", area.getX());
       model.addAttribute("y", area.getY());
-
+      
       List<Hot> al = ms.getHot(local);
       
       model.addAttribute("lineorder", lineorder);
-      model.addAttribute("local", local);
+      model.addAttribute("dday", 1);      
+      model.addAttribute("local1", local);
       model.addAttribute("hot", al);
       model.addAttribute("plannerId", planner.getPlannerid());
       model.addAttribute("day", day1[0]);
@@ -358,7 +359,7 @@ public class MapController {
       } else {
          List<ScheduleHot> slist = ms.getLocalSchedule(
                loginUser.getMemberid(), plannerTitle, local);
-         System.out.println(slist.get(0).getLocal());
+         
          model.addAttribute("slist", slist);
 
       }
@@ -371,7 +372,7 @@ public class MapController {
       model.addAttribute("y", area.getY());
 
       List<Hot> al = ms.getHot(local);
-      System.out.println("local="+local);
+      
       model.addAttribute("local",local);
       model.addAttribute("dday",1);
       model.addAttribute("hot", al);
