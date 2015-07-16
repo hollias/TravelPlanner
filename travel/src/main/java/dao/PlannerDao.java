@@ -17,4 +17,5 @@ public interface PlannerDao {
 	Planner plannerName(String memberid, String plannername);
 	public void updatePlannerName(Planner planner);
 	public List<Planner> mainMap();
+	public int plongo(String plannerid,String memberid); 	// 현재 플레너 ->지난플레너로 변경
 }

@@ -71,7 +71,10 @@ public class RailnoServiceImpl implements RailnoService{
 	public Planner plannerName(String memberid, String plannername) {
 		return plannerDao.plannerName(memberid, plannername);
 	}
-	
+	// 현재 플레너 ->지난플레너로 변경
+	public int plongo(String plannerid, String memberid) {
+		return plannerDao.plongo(plannerid, memberid);
+	}
 	//MemberImpl
 	public Member getMemberBymIdAndPassword(Member mem) {
 		return this.memberDao.getMemberBymIdAndPassword(mem);
@@ -177,4 +180,5 @@ public class RailnoServiceImpl implements RailnoService{
 	public List<Area> areaname(Area area) {
 		return areaDao.areaname(area);
 	}
+	
 }
