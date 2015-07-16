@@ -6,7 +6,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="../header.jsp" %>
 <%@ include file="../mainHeader.jsp" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="root" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="ko" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -15,7 +14,6 @@
         <title>샘플코드</title>
 <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=da0078193c4de13572dd7e2475a639cc"></script>
 <script type="text/javascript" src="${root}/js/jquery.js"></script>
-
 <style type="text/css">
 
 
@@ -23,36 +21,61 @@
 </head>
 <body>
 <form action="detailSubmit.do" method="post">
-<table>
-   <tr>
-   <c:forEach var="plannerS" items="${plannerS }">
-      <td><a href="selectLocal.do?lineorder=${plannerS.lineorder }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local1 }">${plannerS.local }</a></td>
-   </c:forEach>
-   </tr>
-</table>
-<table><tr style="vertical-align: top;"><td>
-   <c:forEach var="i" begin="1" end="${day }">
-      <div class="day"><a href="selectDday.do?dday=${i }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local1 }&lineorder=${lineorder }">${i }일차</a></div>
-   </c:forEach>
-   <div>입력할 플래너 : ${plannerTitle }</div>
-   <div>여행출발일자 : ${startDate } </div>
-    
-    <div id="msg">
-    <c:if test="${slist != null }">
-       <c:forEach var="list" items="${slist }">
-      <table id="stable" border="1">   
-         <tr>
-         <td><img alt="aa" src="resources/upload/${list.hotimage }" width="100"></td><td>${list.hotname }</td>
-         <td><input type="hidden" id="sid" value="${list.scheduleid }">        
-         <input type="button" value="취소" onclick="cancel(this)"></td></tr>   
-      </table>
-   </c:forEach>
-    </c:if>
-    
-    </div>
-    <div id="mmm"></div>
+<div id="hotmenu" style="margin-left: 74px;">
+	<ul>
+		<c:forEach var="plannerS" items="${plannerS }">
+      	<li style="margin-left: auto;"><a href="selectLocal.do?lineorder=${plannerS.lineorder }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local1 }">${plannerS.local }</a></li>
+  		</c:forEach>
+	</ul>
+</div>
+<table style="margin-left: 75px"><tr style="vertical-align: top;"><td>
+
+<fieldset>
+<legend>${plannerTitle }</legend>
+		<label class="ongoing" style="font-size: 15px">여행출발일자</label>
+		<label class="ongoing" style="font-size: 15px">${startDate }</label><p></p>
+		<c:forEach var="i" begin="1" end="${day }">
+			<a href="selectDday.do?dday=${i }&plannerTitle=${plannerTitle}&startDate=${startDate}&local=${local1 }&lineorder=${lineorder }" class="home2">${i }일차</a>
+		</c:forEach><p></p>
+</fieldset>
+<div id="msg">
+	<c:if test="${slist != null }">
+	<fieldset>
+		<legend>${local1}</legend>
+	</fieldset>
+	<c:forEach var="list" items="${slist }">
+	<fieldset>
+		<table> 
+		<tr>
+			<td rowspan="3" style="padding-right: 10px">
+				<img src="resources/upload/${list.hotimage }" width="100">
+			</td>
+			<td colspan="2">
+				<div class="ongoing">${list.hotname }</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="ongoing">${list.hotprice }	</div>
+			</td>
+			<td rowspan="2">
+				<input type="hidden" id="sid" value="${list.scheduleid }">        
+				<input type="button" value="취소" onclick="cancel(this)">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="ongoing">${list.dday} 일차</div>
+			</td>
+		</tr>
+		<p></p>
+		</table>
+	</fieldset>
+	</c:forEach>
+	</c:if>
+</div>
     <input type="submit" value="확인">
-</td><td >     
+</td><td style="width: 835px">     
 <div id="map" style="border:1px solid #000;" ></div>
 
 <script type="text/javascript">   
@@ -88,7 +111,7 @@
            activateTrafficMap : false,                      // 실시간 교통정보 활성화 여부
            activateBicycleMap : false,                    // 자전거 지도 활성화 여부
            minMaxLevel : [ 1, 14 ],                         // 지도의 최소/최대 축척 레벨
-           size : new nhn.api.map.Size(550, 920)    // 지도의 크기
+           size : new nhn.api.map.Size(835, 920)    // 지도의 크기
      });
      
      var mapInfoTestWindow = new nhn.api.map.InfoWindow(); // - info window 생성

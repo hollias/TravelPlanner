@@ -12,14 +12,32 @@
 </script>
 </head>
 <body>
-   <c:forEach var="list1" items="${list}">
-   
-   <table border="1">   
-   <tr>
-      <td><img alt="" src="resources/upload/${list1.hotimage }" width="100"></td><td>${list1.hotname }</td>
-      <td><input type="hidden" id="sid" value="${list1.scheduleid }">
-      <input type="button" value="취소" onclick="cancel(this)"></td></tr>   
-   </table>
-   </c:forEach>
+	<fieldset>
+		<legend>${dday} 일차</legend>
+	</fieldset>
+	<c:forEach var="list1" items="${list }">
+	<fieldset>
+		<table> 
+		<tr>
+			<td rowspan="2" style="padding-right: 30px">
+				<img src="resources/upload/${list1.hotimage }" width="100">
+			</td>
+			<td style="padding-right: 50px">
+				<div class="ongoing">${list1.hotname }</div>
+			</td>
+			<td rowspan="2">
+				<input type="hidden" id="sid" value="${list1.scheduleid }">        
+				<input type="button" value="취소" onclick="cancel(this)">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="ongoing">${list1.hotprice }	</div>
+			</td>
+		</tr>
+		<p></p>
+		</table>
+</fieldset>
+</c:forEach>
 </body>
 </html>
