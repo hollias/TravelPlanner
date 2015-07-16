@@ -71,11 +71,13 @@ public class ScheduleHotController {
 		}else{
 			schot = rs.schot(loginUser.getMemberid(), plannername);
 			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
 		}
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
 		model.addAttribute("schot",schot);
+		model.addAttribute("memberid",memberid);
 		return "diary/schedule";
 	}
 }

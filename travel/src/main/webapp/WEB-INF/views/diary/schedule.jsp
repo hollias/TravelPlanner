@@ -41,9 +41,9 @@
 						<legend>일정표</legend>
 						<div class="elements">
 						<label class="label" for="name"><a href="schedule.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>요약표</a></label>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}" class="home"><p>요약표</a></label>
 						<label class="label" for="name"><a href="sccal.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>달력</a></label>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}" class="home"><p>달력</a></label>
 						</div>
 					</fieldset>
 				</form>
@@ -83,7 +83,7 @@
 						<div class="elements1">
 						<c:forEach var="calendar" items="${calendar }">
 						<label class="label" for="name"><a href="hotarea.do?local=${calendar.local}&plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="home"><p>${calendar.local }</a></label>
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}" class="home"><p>${calendar.local }</a></label>
 						</c:forEach>
 						</div>
 					</fieldset>

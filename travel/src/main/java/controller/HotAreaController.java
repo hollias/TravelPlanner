@@ -21,12 +21,18 @@ public class HotAreaController {
 	private RailnoService rs;
 	@RequestMapping(value="hotarea")
 	public String hotarea(Model model, HttpSession session,String plannername, String plannerid
-				,String local){
+				,String local,String memberid){
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+		Planner plannerName = null;
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+		if(memberid==null){
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+			memberid = loginUser.getMemberid();
+		}else{
+			plannerName = rs.plannerName(memberid, plannername);
+		}
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		Area areaOne = rs.areaOne(local);
 		List<Hot> hotimage = rs.hotimage(local);
@@ -34,6 +40,7 @@ public class HotAreaController {
 		model.addAttribute("areaOne",areaOne);
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);
+		model.addAttribute("memberid",memberid);
 		return "hotarea/hotarea";
 	}
 	@RequestMapping(value="hacontent")

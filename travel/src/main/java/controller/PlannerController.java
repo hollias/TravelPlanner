@@ -58,16 +58,22 @@ public class PlannerController {
       return "diary/diarycheck";
    }
    @RequestMapping(value="sccal")
-   public String sccal(Model model, HttpSession session , String plannerid, String plannername){
+   public String sccal(Model model, HttpSession session , String plannerid, String plannername,String memberid){
       Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+      Planner plannerName =null;
       if(loginUser != null){
          model.addAttribute("loginUser", loginUser);
       }
-      List<PlannerS> calendar = rs.calendar(plannerid);
-      Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+      if(memberid==null){
+    	  plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+    	  memberid = loginUser.getMemberid();
+      }else{
+    	  plannerName = rs.plannerName(memberid, plannername);
+      }
+      List<PlannerS> calendar = rs.calendar(plannerid); 
       model.addAttribute("plannerName",plannerName);
-      System.out.println(calendar.get(1).getDay());
       model.addAttribute("calendar",calendar);
+      model.addAttribute("memberid",memberid);
       return "diary/sccal";
    }
 }
