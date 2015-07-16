@@ -167,7 +167,7 @@ public class MapController {
    @RequestMapping(value = "deletePlannerS")
    public String deletePlannerS(String index, Model model, HttpSession session) {
       int inx = Integer.parseInt(index) - 1;
-      System.out.println(inx);
+      
       Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
       // planner 정보 저장
       Planner planner = new Planner();
