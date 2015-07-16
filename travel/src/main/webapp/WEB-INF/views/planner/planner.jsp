@@ -8,26 +8,33 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>샘플코드</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>샘플코드</title>
 <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=da0078193c4de13572dd7e2475a639cc"></script>
 <script type="text/javascript" src="${root}/js/jquery.js"></script>
-
-<style type="text/css">
-
-
-</style>
+<style type="text/css"></style>
 </head>
 <body>
 <form action="MapSubmit.do" method="post" >
-
+	<fieldset>
+		<legend>입력창</legend>
+		<div class="elements">
+		<label class="label" for="name"><p>플래너 이름</label>
+		<input type="text" name="plannerTitle">
+		<label class="label" for="name"><p>여행출발일자</label>
+		<input type="date" name="startDate">
+		<div id="msg"></div>
+		<input type="submit" value="확인">
+		</div>
+	</fieldset>
+<!-- 
 <table><tr style="vertical-align: top;"><td>
-	<div>입력할 플래너<input type="text" name="plannerTitle"></div>
+	<div>플래너 이름<input type="text" name="plannerTitle"></div>
 	<div>여행출발일자<input type="date" name="startDate"></div>
     <div id="msg"></div>
     <input type="submit" value="확인">
 </td><td >     
-<div id="map" style="border:1px solid #000;" ></div>
+<div id="map" style="border:1px solid #000;" ></div> -->
 
 <script type="text/javascript">   
 
