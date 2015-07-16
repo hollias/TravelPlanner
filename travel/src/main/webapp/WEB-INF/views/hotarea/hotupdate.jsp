@@ -43,10 +43,15 @@
       </div>
       <form class="viewForm" method="post">
          <input type="hidden" name="hotid" value="${hotajax.hotid }" />
-         <button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
-      <%
+       <%
          Member mem  = (Member)request.getAttribute("loginUser");
          Hot bd = (Hot)request.getAttribute("hotajax");
+         if (mem !=null)
+         if(mem.getMemberid().equals("master")){
+         %> <button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+         <% }else if(mem.getMemberid().equals(bd.getMemberId())){
+         %> <button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+         <% }
          if (mem !=null)
          if(mem.getMemberid().equals("master")){
          %><button type="button" onclick="onDel()" class="btn btn-primary">삭제</button>
