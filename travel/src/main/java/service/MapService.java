@@ -40,7 +40,7 @@ public interface MapService {
 	//멤버아이디와 플래너 이름을 통해 일정 갯수 가져오는것
 	public int scheduleCount(String memberid, String plannerTitle);
 	//멤버아이디와 플러너 이름을 통해 모든 일정가져오기
-	public List<ScheduleHot> getAllSchedule(String memberid, String plannerTitle);
+	public List<ScheduleHot> getAllSchedule(String memberid, String plannerTitle,String local);
 	//x,y좌표를 이용하여 hot의 id를 찾는 것
 	public int findHotId(Hot hot);
 	//일정표를 삽입하는 부분

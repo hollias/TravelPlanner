@@ -40,7 +40,7 @@
   		and s.memberid=#{memberid} and plannername=#{plannername} order by dday
   </select>
   <select id="getAllSchedule" resultMap="ScheduleHotResult" parameterType="java.util.Map">
-    	select * from schedule s, hot h where s.hotid=h.hotid and h.memberid=#{memberid} and s.plannername=#{plannername} 
+    	select * from schedule s, hot h where s.hotid=h.hotid and h.memberid=#{memberid} and s.plannername=#{plannername} and h.local=#{local}
   </select>
   <select id="selectDdaySchedule" resultMap="ScheduleHotResult" parameterType="java.util.Map">
   		select * from schedule s, hot h 

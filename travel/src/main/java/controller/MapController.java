@@ -134,6 +134,7 @@ public class MapController {
    @RequestMapping(value = "addSchedule")
    public String lineDetail(String dday, String local, String plannerId,
          Model model, HttpSession session, String x, String y) {
+	   
       double x1 = Double.parseDouble(x);
       int pid = Integer.parseInt(plannerId);
       int dday1 = Integer.parseInt(dday);
@@ -260,7 +261,11 @@ public class MapController {
       // 상세 일정페이지로 보낼 데이터들
       model.addAttribute("plannerTitle", plannerTitle);
       model.addAttribute("startDate", startdate);
+      
+      List<PlannerS> ps = ms.selectOngoingPlannerS(plannerId);
+      model.addAttribute("plannerS", ps);
 
+      String local = ps.get(0).getLocal();
       int sc = ms.scheduleCount(loginUser.getMemberid(), plannerTitle);
 
       if (sc == 0) {
@@ -268,15 +273,11 @@ public class MapController {
          model.addAttribute("slist", slist);
 
       } else {
-
-         List<ScheduleHot> slist = ms.getAllSchedule(
-               loginUser.getMemberid(), plannerTitle);
+    	  
+         List<ScheduleHot> slist = ms.getAllSchedule(loginUser.getMemberid(), plannerTitle,local);
          model.addAttribute("slist", slist);
       }
-      List<PlannerS> ps = ms.selectOngoingPlannerS(plannerId);
-      model.addAttribute("plannerS", ps);
-
-      String local = ps.get(0).getLocal();
+      
       int lineorder = ps.get(0).getLineorder();
       Area area = rs.areaOne(local);
       model.addAttribute("x", area.getX());
@@ -317,6 +318,7 @@ public class MapController {
       
       
       Area area = rs.areaOne(local);
+      
       model.addAttribute("x", area.getX());
       model.addAttribute("y", area.getY());
 
@@ -330,7 +332,7 @@ public class MapController {
       model.addAttribute("day",dd);
       model.addAttribute("hot", al);
       model.addAttribute("plannerId", plannerId);
-      model.addAttribute("local",local);
+      model.addAttribute("local1",local);
       model.addAttribute("dday", dday);
 
       return "planner/detailPlanner";
@@ -377,7 +379,7 @@ public class MapController {
       List<Hot> al = ms.getHot(local);
       
       model.addAttribute("lineorder",lineorder);
-      model.addAttribute("local",local);
+      model.addAttribute("local1",local);
       model.addAttribute("dday",1);
       model.addAttribute("hot", al);
       model.addAttribute("plannerId", plannerId);

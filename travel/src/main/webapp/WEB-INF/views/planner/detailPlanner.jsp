@@ -239,7 +239,8 @@
         var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
          aPoints.splice(aa,1); 
          oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
-        var sendData = 'index='+aa;        
+        var sendData = 'index='+aa;       
+         alert
         $.ajaxSetup({
              type:"POST",
              url:"deletePlannerS.do",

@@ -170,8 +170,8 @@ public class MapServiceImpl implements MapService{
 
 
 	@Override
-	public List<ScheduleHot> getAllSchedule(String memberid, String plannerTitle) {
-		return shd.getAllSchedule(memberid,plannerTitle);
+	public List<ScheduleHot> getAllSchedule(String memberid, String plannerTitle,String local) {
+		return shd.getAllSchedule(memberid,plannerTitle,local);
 	}
 
 

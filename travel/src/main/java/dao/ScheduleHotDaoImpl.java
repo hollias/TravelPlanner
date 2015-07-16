@@ -47,11 +47,11 @@ public class ScheduleHotDaoImpl implements ScheduleHotDao{
 		return session.selectList("schot",map);
 	}
 	@Override
-	public List<ScheduleHot> getAllSchedule(String memberid, String plannerTitle) {
+	public List<ScheduleHot> getAllSchedule(String memberid, String plannerTitle,String local) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("memberid", memberid);
 		map.put("plannername", plannerTitle);
-		
+		map.put("local", local);
 		return session.selectList("getAllSchedule", map);
 	}
 	@Override
