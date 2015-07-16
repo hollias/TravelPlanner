@@ -37,6 +37,7 @@
   <select id="hotimage" resultType="Hot" parameterType="java.util.Map">
 	<![CDATA[ select hotimage, hotid, local,hotname,readcount,x,y ,row_number() over(order by readcount desc)rank from(
   		select hotimage,hotid,hotname,local,readcount,x,y,row_number() over(order by readcount desc)rank from hot where local=#{local}) where rank <=20 ]]>
+  		
   </select>
   <insert id="inserthot" parameterType="hot" useGeneratedKeys="true" keyProperty="hotid">
 	<selectKey keyProperty="hotid" resultType="Integer"  order="BEFORE">

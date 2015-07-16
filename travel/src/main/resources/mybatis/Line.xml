@@ -29,4 +29,8 @@
  	<select id="selectLineId" parameterType="java.util.Map" resultType="int">
  		<![CDATA[select lineid from line where startpoint = #{startpoint} and endpoint = #{endpoint}]]>
  	</select>
+ 	<select id="findNextLocal" parameterType="String" resultType="Line">
+ 		<![CDATA[ select readcount,endpoint ,row_number() over(order by readcount desc) rank from (select readcount,endpoint ,row_number() over(order by readcount desc) rank from line where startpoint=#{local}) where rank =1 ]]>
+ 	</select>
+
 </mapper>

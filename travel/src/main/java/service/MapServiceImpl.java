@@ -245,5 +245,11 @@ public class MapServiceImpl implements MapService{
 	}
 
 
+	@Override
+	public Line findNextLocal(String local) {
+		return md.findNextLocal(local);
+	}
+
+
 	
 }

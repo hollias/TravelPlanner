@@ -26,6 +26,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sun.xml.internal.ws.api.pipe.NextAction;
+
 import service.MapService;
 import service.RailnoService;
 import service.ShopService;
@@ -120,6 +122,14 @@ public class MapController {
 
    @RequestMapping(value = "line")
    public String line(String local, String plannerId, Model model) {
+	   //추천 다음 라인 검색
+	  Line line = ms.findNextLocal(local);
+	  String nextArea;
+	  if(line==null)
+		  nextArea = "";
+	  else
+		  nextArea = line.getEndpoint();
+	  
       int pid = Integer.parseInt(plannerId);
       int plannerSCount = ms.plannerSCount(pid);
       PlannerS planners = new PlannerS();
@@ -128,6 +138,7 @@ public class MapController {
       int result = ms.insertPlannerS(planners);
       List<PlannerS> list = ms.selectOngoingPlannerS(pid);
       model.addAttribute("list", list);
+      model.addAttribute("nextArea", nextArea);
       return "planner/line";
    }
 
@@ -155,7 +166,7 @@ public class MapController {
             loginUser.getMemberid(),local);
       
       model.addAttribute("list", list);
-      
+      model.addAttribute("dday",dday);
       return "planner/scheduleLine";
    }
 

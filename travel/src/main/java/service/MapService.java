@@ -63,4 +63,7 @@ public interface MapService {
 	public void deleteSchedule(int inx);
 	//해당 인텍스의 스케쥴정보를 가져오는것
 	public ScheduleHot selectScheduleHotInfo(int inx);
+	//추천 지역 검색
+	public Line findNextLocal(String local);
+	
 }

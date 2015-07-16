@@ -3,6 +3,7 @@ package dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.Area;
 import model.Line;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,6 +46,13 @@ public class LineDaoImpl implements LineDao{
 		map.put("startpoint", startpoint);
 		map.put("endpoint", endpoint);
 		return session.selectOne("selectLineId", map);
+	}
+
+
+	@Override
+	public Line findNextLocal(String local) {
+		
+		return session.selectOne("findNextLocal", local);
 	}
 
 }
