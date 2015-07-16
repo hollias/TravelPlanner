@@ -19,10 +19,10 @@
 	<fieldset>
 		<table> 
 		<tr>
-			<td rowspan="2" style="padding-right: 30px">
+			<td rowspan="2" style="padding-right: 10px">
 				<img src="resources/upload/${list1.hotimage }" width="100">
 			</td>
-			<td style="padding-right: 50px">
+			<td>
 				<div class="ongoing">${list1.hotname }</div>
 			</td>
 			<td rowspan="2">

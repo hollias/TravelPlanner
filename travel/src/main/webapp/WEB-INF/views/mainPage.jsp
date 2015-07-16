@@ -12,8 +12,8 @@
 			<li><%@include file="mainBanner.jsp"%></li>
 		</ul>
 	</div>
-	<div align="center" style="font-size: 20px;">
-	=============================새로 만들어진 플레너=============================</div>
+	<div align="center" class="home2">
+	================================================새로 만들어진 플레너================================================</div>
 	<table style="height: 300">
 		<tr>
 		<c:forEach var="pl" items="${pl }">
