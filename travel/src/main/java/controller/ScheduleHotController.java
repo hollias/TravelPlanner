@@ -58,13 +58,20 @@ public class ScheduleHotController {
 		return "diary/home";
 	}
 	@RequestMapping(value="schedule")
-	public String schedule(Model model, HttpSession session,String plannername, String plannerid){
-		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
+	public String schedule(Model model, HttpSession session,String plannername, String plannerid,String memberid){
+		Member loginUser = (Member)session.getAttribute(WebConstants.USER_KEY);
+		List<ScheduleHot> schot = null;
+		Planner plannerName = null; 
 		if(loginUser != null){
 			model.addAttribute("loginUser", loginUser);
 		}
-		List<ScheduleHot> schot = rs.schot(loginUser.getMemberid(), plannername);
-		Planner plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+		if(memberid != null){
+			schot = rs.schot(memberid, plannername);
+			plannerName = rs.plannerName(memberid, plannername);
+		}else{
+			schot = rs.schot(loginUser.getMemberid(), plannername);
+			plannerName = rs.plannerName(loginUser.getMemberid(), plannername);
+		}
 		List<PlannerS> calendar = rs.calendar(plannerid);
 		model.addAttribute("calendar",calendar);
 		model.addAttribute("plannerName",plannerName);

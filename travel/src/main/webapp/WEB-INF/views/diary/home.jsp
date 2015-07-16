@@ -66,8 +66,8 @@
 			<td>
 				<form action="#" class="registration_form" style="">
 					<fieldset style="width:500px; height: 300px;">
-					<legend><a href="schedule.do?plannername=
-				${plannerName.plannername }&plannerid=${plannerName.plannerid}" class="schedule">예약정보</a></legend>
+					<legend><c:if test="$"></c:if> <a href="schedule.do?plannername=
+				${plannerName.plannername }&plannerid=${plannerName.plannerid}&memberid=${memberid}" class="schedule">예약정보</a></legend>
 					<div class="elements">
 						<label class="label" for="name">음식점가격</label>
 						<label class="label" for="name">${restaurant.hotprice } 원</label>

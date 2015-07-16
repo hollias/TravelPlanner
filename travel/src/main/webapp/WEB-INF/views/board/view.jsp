@@ -45,10 +45,15 @@
 		</div>
 		<form class="viewForm" method="post">
 			<input type="hidden" name="boardid" value="${item.boardid }" />
-			<button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
-		<%
+			<%
 			Member mem  = (Member)request.getAttribute("loginUser");
 			Board bd = (Board)request.getAttribute("item");
+			if (mem !=null)
+			if(mem.getMemberid().equals("master")){
+			%><button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+			<% }else if(mem.getMemberid().equals(bd.getMemberid())){
+			%><button type="button" onclick="onModify()" class="btn btn-primary">수정</button>
+			<% }
 			if (mem !=null)
 			if(mem.getMemberid().equals("master")){
 			%><button type="button" onclick="onDel()" class="btn btn-primary">삭제</button>
@@ -56,7 +61,7 @@
 			%><button type="button" onclick="onDel()" class="btn btn-primary">삭제</button>
 			<% }%> 
 			<button type="button" onclick="onList()" class="btn btn-primary">목록</button>
-		</form>	
+		</form>
 	</div>
 	
 </body>
