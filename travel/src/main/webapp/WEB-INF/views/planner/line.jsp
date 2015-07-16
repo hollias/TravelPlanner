@@ -14,6 +14,7 @@
 <body>
 <c:forEach var="item" items="${list }">
 	<fieldset>
+		<div id="itemlineorder">${item.lineorder }</div>
 		<legend>${item.local }</legend>
 		<table>
 			<tr><td><input type="hidden" id="local" value="${item.local }" class="ongoing">

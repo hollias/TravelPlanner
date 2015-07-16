@@ -43,9 +43,10 @@
                      <div id="msg">
                      <c:forEach var="item" items="${list }">
                         <fieldset>
+                        
                         <legend>${item.local }</legend>
-                         <table>
-                        <tr><td><input type="hidden" id="local" value="${item.local }" class="ongoing">
+                        <table>
+                        <tr><td><div id="itemlineorder">${item.lineorder }</div><input type="hidden" id="local" value="${item.local }" class="ongoing">
                               <label class="ongoing" for="name">${item.local }</label></td>
                         <td><select name="day" class="ongoing">
                         <c:forEach begin="1" end="5" var="i">
@@ -255,7 +256,7 @@
       $.ajaxSetup({
          type:"POST",
          url:"line.do",
-         dataType:"text",
+         dataType:"html",
          success:function(msg){$('#msg').html(msg);}
       });
       $.ajax({data:sendData});
@@ -264,16 +265,17 @@
     //스케쥴S를 넣는것을 고민해봐야함.
     function cancel(a){
         
-        var aa = $(a).parent().parent().parent().parent().find('#itemlineorder').html();        
+        var aa = $(a).parent().parent().parent().parent().parent().find('#itemlineorder').html();
         $(a).parent().parent().parent().parent().parent().remove();
         var aPoints = oPolyline.getPoints(); // - 현재 폴리라인을 이루는 점을 가져와서 배열에 저장.
          aPoints.splice(aa-1,1); 
          oPolyline.setPoints(aPoints); // - 해당 폴리라인에 배열에 저장된 점을 추가함
-        var sendData = 'index='+aa;        
+        var sendData = 'index='+aa;     
+        alert(sendData);
         $.ajaxSetup({
              type:"POST",
              url:"deletePlannerS.do",
-             dataType:"text",
+             dataType:"html",
              success:function(msg){$('#msg').html(msg);}
           });
           $.ajax({data:sendData});
