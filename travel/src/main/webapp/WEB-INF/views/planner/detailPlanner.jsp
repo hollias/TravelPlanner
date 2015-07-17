@@ -262,7 +262,6 @@
        
        
         var sendData = 'index='+aa;       
-         alert(sendData);
         $.ajaxSetup({
              type:"POST",
              url:"deleteSchedule.do",
