@@ -210,7 +210,6 @@
                  mapInfoTestWindow.autoPosition();
                  
          }
-         alert(oTarget.getPoint().getLng());
          //클릭한것의 x,y좌표를 input에 저장 하는것
          var x = $("#mapx");
          x.val(oPoint.getLng());
