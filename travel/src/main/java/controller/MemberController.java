@@ -99,7 +99,7 @@ public class MemberController {
 			if(ps==null){
 				model.addAttribute("loginUser", loginUser);
 				model.addAttribute("member", member);
-			return "main";
+			return "redirect:main.do";
 			}else{
 				da = ms.da(ps.getPlannerid());
 				if(da!=null){
@@ -109,7 +109,7 @@ public class MemberController {
 				}
 				model.addAttribute("loginUser", loginUser);
 				model.addAttribute("member", member);
-			return "main";
+			return "redirect:main.do";
 			}
 		}
 	}	
@@ -128,7 +128,7 @@ public class MemberController {
 		session.setAttribute(WebConstants.USER_KEY, null);
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
 		model.addAttribute("loginUser", loginUser);
-		return "main";
+		return "redirect:main.do";
 	}	
 	@RequestMapping(value="memberClear")//회원탈퇴
 	public String memberClear(HttpSession session, Model model, String memberid){
@@ -136,7 +136,7 @@ public class MemberController {
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
 		shopService.deleteMember(memberid);
 		model.addAttribute("loginUser", loginUser);
-		return "redirect:main.html";
+		return "redirect:main.do";
 	}	
 	@RequestMapping(value={"editMember"}, method=RequestMethod.GET)//회원 정보 보기
 	public String editMember(HttpSession session, Model model, String memberid){
