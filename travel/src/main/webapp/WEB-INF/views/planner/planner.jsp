@@ -48,26 +48,6 @@
 
 <script type="text/javascript">   
 
-      /* $(function() {
-              $('#btn').click(function() {
-                alert("1");
-                 var sendData = 'country=' + oTarget.getTitle();
-                
-                $.post("country.do", sendData, function(msg) {
-                   $('#msg').html(msg);
-                });
-                return false;
-             }); 
-          }); */
-/* 
-       function appendItem(a) {
-         $("#msg").html($(a).parent().parent().html());
-         console.log($(a).parent().parent().html());
-      }  */
-   
-
-     
-     
      var oPoint = new nhn.api.map.LatLng(36.4851766,127.9984218);   // 초기 좌표
      <%
      List<Area> al = (List)request.getAttribute("area");

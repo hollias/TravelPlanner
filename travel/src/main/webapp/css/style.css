@@ -23,7 +23,8 @@ ul, li {
 }
  
 .clsBannerButton li {
-    width: 100px;
+    width: 110px;
+    margin:auto;
     float: left;
     padding: 2px;
     border-right: 1px solid #e1e1e1;
