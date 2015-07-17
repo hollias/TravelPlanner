@@ -28,6 +28,14 @@ create table schedule(
    hotid number(5),                  --추천:고유번호
    dday number(5)               --몇일차
 );
+drop table area;
+create table area(
+   local varchar2(50) primary key,--지역 고유명 area를 local로 변경
+   localcontent varchar2(3000),      --지역설명 area를 local로 변경
+   x number(20,10),               --좌표  X
+   y number(20,10),               --좌표 Y
+   areaimage varchar2(50)         --지역이미지
+);
 create table member(
    memberid varchar2(15) primary key,--회원ID
    password varchar2(20),         --비밀번호
@@ -43,13 +51,7 @@ create table board(
    regdate date,               --날짜
    readcount number(10)         --readcount
 );
-create table area(
-   local varchar2(50) primary key,--지역 고유명 area를 local로 변경
-   localcontent varchar2(3000),      --지역설명 area를 local로 변경
-   x number(20,10),               --좌표  X
-   y number(20,10),               --좌표 Y
-   areaimage varchar2(50)         --지역이미지
-);
+
 
 
 create table hot(
