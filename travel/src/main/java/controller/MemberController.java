@@ -136,7 +136,7 @@ public class MemberController {
 		Member loginUser = (Member) session.getAttribute(WebConstants.USER_KEY);
 		shopService.deleteMember(memberid);
 		model.addAttribute("loginUser", loginUser);
-		return "redirect:main.do";
+		return "redirect:main.do"; 
 	}	
 	@RequestMapping(value={"editMember"}, method=RequestMethod.GET)//회원 정보 보기
 	public String editMember(HttpSession session, Model model, String memberid){
