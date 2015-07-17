@@ -147,12 +147,12 @@ public class MapController {
       
       //추천 다음 라인 검색	  
       for(int i=0;i<list.size();i++){
-    	  Line line = ms.findNextLocal(list.get(i).getLocal());
-    	  
+    	  Line line = ms.findNextLocal(list.get(i).getLocal());	  
     	  if(line==null){
-    		  line.setEndpoint("");    		  
+    		  line = new Line();
+    		  line.setEndpoint("");
+    		  
     	  }
-    	  
     	  list.get(i).setNextArea(line.getEndpoint());
     	  
     	  
@@ -163,6 +163,7 @@ public class MapController {
       
       return "planner/line";
    }
+
 
    @RequestMapping(value = "addSchedule")
    public String lineDetail(String dday, String local, String plannerId,
